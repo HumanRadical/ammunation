@@ -19,9 +19,9 @@ class ProductFactory extends Factory
         return [
             'name' => ucfirst(fake()->word()) . ' ' . fake()->randomNumber(2, false),
             'slug' => fake()->slug(),
-            'description' => fake()->paragraph(),
-            'price' => fake()->randomFloat(2, 100, 5000),
             'category' => ucfirst(fake()->word()),
+            'price' => fake()->randomFloat(2, 100, 5000),
+            'description' => fake()->paragraph(5),
         ];
     }
 }
