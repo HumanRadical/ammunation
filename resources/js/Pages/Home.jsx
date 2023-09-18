@@ -21,7 +21,6 @@ export default function Home({ auth, products, categories, query }) {
         return categoryOption
     })
 
-
     return (
         <>
             <Head title='Home' />
