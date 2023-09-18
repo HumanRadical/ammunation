@@ -1,26 +1,26 @@
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 
-export default function Home({ auth, products, categories }) {
+export default function Home({ auth, products, categories, query }) {
     const productCards = products.map(product => {
         return <ProductCard product={product} />
     })
 
     const categoryOptions = categories.map(category => {
-        return <option value={ category.slug }>{ category.name }</option>
+        return <option value={category.slug}>{category.name}</option>
     })
 
     return (
         <>
             <Head title='Home' />
-            <Navbar auth={ auth } />
+            <Navbar auth={auth} />
             <div className='p-3 border-b border-gray-300 flex justify-center'>
                 <form action='/'>
                     <label htmlFor='category'>Category: </label>
                     <select className='mr-3' name='category' id='category'>
                         <option value=''>Select</option>
-                        { categoryOptions }
+                        {categoryOptions}
                     </select>
                     <label htmlFor='min'>Min: </label>
                     <input className='mr-3 w-20' type='number' placeholder='$$$' id='min' name='min' />
