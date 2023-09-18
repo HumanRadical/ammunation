@@ -1,14 +1,14 @@
 import { Link } from '@inertiajs/react';
 import ApplicationLogo from './ApplicationLogo';
 
-export default function Navbar(props) {
+export default function Navbar({ auth }) {
     return (
         <nav className="p-6 bg-red-600 w-full grid grid-cols-8">
             <a className='col-start-4 col-span-2' href="/">
                 <ApplicationLogo />
             </a>
             <div className='flex justify-end content-center col-end-9'>
-                {props.auth.user ? (
+                {auth.user ? (
                     <Link
                         href={route('dashboard')}
                         className="font-semibold text-xl text-white my-auto"
