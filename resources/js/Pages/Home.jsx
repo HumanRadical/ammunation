@@ -3,7 +3,7 @@ import ProductCard from '@/components/ProductCard';
 import { Head } from '@inertiajs/react';
 
 export default function Home({ auth, products }) {
-    const productDisplays = products.map(product => {
+    const productCards = products.map(product => {
         return <ProductCard product={product} />
     })
 
@@ -12,7 +12,7 @@ export default function Home({ auth, products }) {
             <Head title="Home" />
             <Navbar auth={auth} />
             <main className='flex flex-wrap p-10 m-auto'>
-                { productDisplays }
+                { productCards }
             </main>
         </>
     );
