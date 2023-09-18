@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         return [
             'name' => ucfirst(fake()->word()) . '-' . fake()->randomNumber(2, false),
             'slug' => fake()->slug(),
-            'category' => Category::all()->random(),
+            'category_id' => Category::all()->random(),
             'price' => fake()->randomFloat(2, 100, 5000),
             'description' => fake()->paragraph(5),
         ];
