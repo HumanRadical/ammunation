@@ -3,7 +3,7 @@ import ProductCard from '@/components/ProductCard';
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 
-export default function Home({ auth, products, categories, query }) {
+export default function Shop({ auth, products, categories, query }) {
     const [minVal, setMinVal] = useState(query.min)
     const [maxVal, setMaxVal] = useState(query.max)
     const [searchVal, setSearchVal] = useState(query.search)
@@ -23,7 +23,7 @@ export default function Home({ auth, products, categories, query }) {
 
     return (
         <>
-            <Head title='Home' />
+            <Head title='Shop' />
             <Navbar auth={auth} />
             <div className='p-3 border-b border-gray-300 flex justify-center'>
                 <form action='/'>
@@ -42,7 +42,7 @@ export default function Home({ auth, products, categories, query }) {
                 </form>
             </div>
             <main className='flex flex-wrap p-10 m-auto'>
-                { productCards }
+                {productCards}
             </main>
         </>
     );

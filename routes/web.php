@@ -5,8 +5,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [ProductController::class, 'index']);
-Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+Route::get('/', function () {
+    return Inertia::render('Home');
+})->name('home');
+
+Route::get('/shop', [ProductController::class, 'index'])->name('shop');
+Route::get('/shop/{product:slug}', [ProductController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home', [
+        return Inertia::render('Shop', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'products' => Product::filter(
