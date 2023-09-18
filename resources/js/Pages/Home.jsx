@@ -1,20 +1,26 @@
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
-import { Head, useForm } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Home({ auth, products, categories, query }) {
-    const productCards = products.map(product => {
-        return <ProductCard product={product} />
-    })
-
-    const categoryOptions = categories.map(category => {
-        return <option value={category.slug}>{category.name}</option>
-    })
-
     const [minVal, setMinVal] = useState(query.min)
     const [maxVal, setMaxVal] = useState(query.max)
     const [searchVal, setSearchVal] = useState(query.search)
+    
+    const productCards = products.map(product => {
+        return <ProductCard product={product} key={product.id} />
+    })
+
+    const categoryOptions = categories.map(category => {
+        let isSelected = false
+        if (query.category == category.slug) {
+            isSelected = true
+        }
+        const categoryOption = <option value={category.slug} selected={isSelected} key={category.id}>{category.name}</option>
+        return categoryOption
+    })
+
 
     return (
         <>
