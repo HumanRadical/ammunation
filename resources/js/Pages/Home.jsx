@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import { Head } from '@inertiajs/react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Home({ auth }) {
     return (
         <>
             <Head title="Home" />
