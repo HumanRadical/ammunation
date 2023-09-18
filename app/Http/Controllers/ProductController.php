@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -13,7 +14,8 @@ class ProductController extends Controller
         return Inertia::render('Home', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'products' => Product::all()
+            'products' => Product::all(),
+            'categories' => Category::all()
         ]);
     }
 
