@@ -14,7 +14,9 @@ class ProductController extends Controller
         return Inertia::render('Home', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'products' => Product::filter(request(['category', 'min', 'max']))->get(),
+            'products' => Product::filter(
+                request(['category', 'min', 'max', 'search'])
+            )->get(),
             'categories' => Category::all()
         ]);
     }

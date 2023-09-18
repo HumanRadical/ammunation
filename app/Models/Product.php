@@ -29,5 +29,11 @@ class Product extends Model
             $query->where('price', '>=', $min));
         $query->when($filters['max'] ?? false, fn ($query, $max) =>
             $query->where('price', '<=', $max));
+
+        $query->when($filters['search'] ?? false, fn ($query, $search) =>
+            $query->where(fn ($query) =>
+                $query->where('name', 'like', '%' . $search . '%')
+            )
+        );
     }
 }
