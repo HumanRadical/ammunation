@@ -17,7 +17,8 @@ class ProductController extends Controller
             'products' => Product::filter(
                 request(['category', 'min', 'max', 'search'])
             )->get(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'query' => request()->query()
         ]);
     }
 
