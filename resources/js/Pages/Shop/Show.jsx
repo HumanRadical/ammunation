@@ -6,7 +6,7 @@ export default function Show({ auth, product }) {
         <Layout auth={auth} head={product.name}>
             <div className='grid grid-cols-3 m-10'>
                 <Link href={route('shop.index')} className='max-h-10 flex content-center'>
-                    <img className='w-10' src="http://localhost:8000/images/chevron-left-solid.svg" alt=""/>
+                    <img className='w-10' src="http://localhost:8000/images/chevron-left.svg" alt=""/>
                     <span className='text-2xl font-bold my-auto'>Back</span>
                 </Link>
                 <div className='max-w-4xl mx-auto'>
