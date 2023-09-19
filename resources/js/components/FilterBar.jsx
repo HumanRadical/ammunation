@@ -16,21 +16,25 @@ export default function FilterBar({ categories, query }) {
 
     return (
         <div className='p-3 border-b border-gray-300 flex justify-center'>
-            <form action='/shop'>
-                <label htmlFor='category'>Category: </label>
-                <select className='mr-3' name='category' id='category'>
-                    <option value=''>Select</option>
-                    {categoryOptions}
-                </select>
-                <label htmlFor='min'>Min: </label>
-                <input className='mr-3 w-20' type='number' placeholder='$$$' id='min' name='min' value={minVal} onChange={e=>
-                setMinVal(e.target.value)} />
-                <label htmlFor='max'>Max: </label>
-                <input className='mr-3 w-20' type='number' placeholder='$$$' id='max' name='max' value={maxVal} onChange={e=>
-                setMaxVal(e.target.value)} />
-                <label htmlFor='search'>Search: </label>
-                <input className='mr-3' type='text' placeholder='Glock-19...' id='search' name='search' value={searchVal}
-                    onChange={e=> setSearchVal(e.target.value)} />
+            <form className='space-x-3' action='/shop'>
+                <label>
+                    Category: <select name='category'>
+                        <option>Select</option>
+                        {categoryOptions}
+                    </select>
+                </label>
+                <label>
+                    Min: <input className='w-20' type='number' placeholder='$$$' name='min' value={minVal} onChange={e=>
+                    setMinVal(e.target.value)} />
+                </label>
+                <label htmlFor='max'>
+                    Max: <input className='w-20' type='number' placeholder='$$$' name='max' value={maxVal} onChange={e=>
+                    setMaxVal(e.target.value)} />
+                </label>
+                <label>
+                    Search: <input type='text' placeholder='Glock-19...' name='search' value={searchVal}
+                        onChange={e=> setSearchVal(e.target.value)} />
+                </label>
                 <button className='bg-blue-500 text-white py-2 px-3 rounded border border-black'>Search</button>
             </form>
         </div>
