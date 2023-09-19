@@ -13,7 +13,7 @@ export default function Shop({ auth, products, categories, query }) {
             <Head title='Shop' />
             <Navbar auth={auth} />
             <FilterBar categories={categories} query={query} />
-            <main className='flex flex-wrap p-10 m-auto'>
+            <main className='flex flex-wrap p-10'>
                 {productCards}
             </main>
         </>
