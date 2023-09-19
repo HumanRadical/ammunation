@@ -25,10 +25,11 @@ class Product extends Model
             $query->where('slug', $category))
         );
 
-        $query->when($filters['min'] ?? false, fn ($query, $min) =>
-            $query->where('price', '>=', $min));
-        $query->when($filters['max'] ?? false, fn ($query, $max) =>
-            $query->where('price', '<=', $max));
+        $query->when($filters['minPrice'] ?? false, fn ($query, $minPrice) =>
+            $query->where('price', '>=', $minPrice));
+            
+        $query->when($filters['maxPrice'] ?? false, fn ($query, $maxPrice) =>
+            $query->where('price', '<=', $maxPrice));
 
         $query->when($filters['search'] ?? false, fn ($query, $search) =>
             $query->where(fn ($query) =>

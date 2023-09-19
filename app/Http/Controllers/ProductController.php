@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         return Inertia::render('Shop/Index', [
             'products' => Product::filter(
-                request(['category', 'min', 'max', 'search'])
+                request(['category', 'minPrice', 'maxPrice', 'search'])
             )->get(),
             'categories' => Category::all(),
             'query' => request()->query()
