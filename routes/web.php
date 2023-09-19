@@ -12,8 +12,8 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/shop', [ProductController::class, 'index'])->name('shop');
-Route::get('/shop/{product:slug}', [ProductController::class, 'show']);
+Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
+Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

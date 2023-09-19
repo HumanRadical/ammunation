@@ -12,7 +12,7 @@ export default function Navbar({ auth }) {
                     Home
                 </Link>
                 <Link
-                    href={route('shop')}
+                    href={route('shop.index')}
                     className="font-semibold text-xl text-white"
                 >
                     Shop

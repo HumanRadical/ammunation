@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import { Head } from '@inertiajs/react';
 
-export default function ProductPage({ auth, product }) {
+export default function Show({ auth, product }) {
 
     return (
         <>

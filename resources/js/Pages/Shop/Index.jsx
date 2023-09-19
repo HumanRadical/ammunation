@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
 import { Head } from '@inertiajs/react';
 
-export default function Shop({ auth, products, categories, query }) {
+export default function Index({ auth, products, categories, query }) {
     const productCards = products.map(product => {
         return <ProductCard product={product} key={product.id} />
     })
