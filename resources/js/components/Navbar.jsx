@@ -18,9 +18,9 @@ export default function Navbar({ auth }) {
                     Shop
                 </Link>
             </div>
-            <a className='col-start-4 col-span-2' href="/">
+            <Link className='col-start-4 col-span-2' href={route('home')}>
                 <ApplicationLogo />
-            </a>
+            </Link>
             <div className='flex justify-end col-end-9 my-auto space-x-4'>
                 {auth.user ? (
                     <Link
