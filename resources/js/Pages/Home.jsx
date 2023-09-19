@@ -1,15 +1,9 @@
-import Navbar from '@/components/Navbar';
-import { Head } from '@inertiajs/react';
+import Layout from '@/Layouts/Layout';
 
 export default function Home({ auth }) {
-
     return (
-        <>
-            <Head title='Home' />
-            <Navbar auth={auth} />
-            <main className='flex flex-wrap p-10 m-auto'>
-                <h2>Welcome to ammunation!</h2>
-            </main>
-        </>
+        <Layout auth={auth} head='Home'>
+            <h2>Welcome to ammunation!</h2>
+        </Layout>
     );
 }
