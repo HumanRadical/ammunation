@@ -19,7 +19,7 @@ export default function FilterBar({ categories, query }) {
             <form className='space-x-3' action='/shop'>
                 <label>
                     Category: <select name='category'>
-                        <option>Select</option>
+                        <option value=''>Select</option>
                         {categoryOptions}
                     </select>
                 </label>
