@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react'
 
 export default function FilterBar({ categories }) {
-    const { data, setData, get, reset } = useForm()
+    const { data, setData, get, processing } = useForm()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -49,7 +49,11 @@ export default function FilterBar({ categories }) {
                         value={data.search}
                         onChange={e => setData('search', e.target.value)} />
                 </label>
-                <button className='bg-blue-500 text-white py-2 px-3 rounded border border-black'>Search</button>
+                <button 
+                    className='bg-blue-500 text-white py-2 px-3 rounded border border-black' 
+                    disabled={processing}
+                    >Search
+                </button>
             </form>
         </div>
     )
