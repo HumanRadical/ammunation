@@ -62,7 +62,7 @@ export default function Index({ auth, products }) {
 
             <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 py-12 flex flex-col">
                 <Link href={route('admin.create')} className='bg-white text-gray-600 pb-2 pt-1 px-6 mb-2 rounded-md shadow-sm hover:bg-gray-100 self-end'>
-                    New Post <span className='text-2xl font-light'>+</span>
+                    Add Product <span className='text-2xl font-light'>+</span>
                 </Link>
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <table className="min-w-max table-auto w-full">
