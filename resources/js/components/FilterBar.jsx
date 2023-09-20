@@ -1,7 +1,15 @@
 import { useForm } from '@inertiajs/react'
+import { useEffect } from 'react'
 
-export default function FilterBar({ categories }) {
+export default function FilterBar({ categories, query }) {
     const { data, setData, get, processing } = useForm()
+
+    useEffect(() => {
+        query.category && setData('category', query.category)
+        query.minPrice && setData('minPrice', query.minPrice)
+        query.maxPrice && setData('maxPrice', query.maxPrice)
+        query.search && setData('search', query.search)
+    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -9,7 +17,11 @@ export default function FilterBar({ categories }) {
     }
 
     const categoryOptions = categories.map(category => {
-        return <option value={category.slug} key={category.id}>{category.name}</option>
+        let isSelected = false
+        if (query.category === category.slug) {
+            isSelected = true
+        }
+        return <option value={category.slug} key={category.id} selected={isSelected}>{category.name}</option>
     })
 
     return (
