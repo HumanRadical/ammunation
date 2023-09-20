@@ -1,9 +1,9 @@
-import Layout from '@/Layouts/Layout';
+import MainLayout from '@/Layouts/MainLayout';
 import { Link } from '@inertiajs/react';
 
 export default function Show({ auth, product }) {
     return (
-        <Layout auth={auth} head={product.name}>
+        <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 m-10'>
                 <Link href={route('shop.index')} className='max-h-10 flex content-center'>
                     <img className='w-10' src="http://localhost:8000/images/chevron-left.svg" alt=""/>
@@ -22,6 +22,6 @@ export default function Show({ auth, product }) {
                     </button>
                 </div>
             </div>
-        </Layout>
+        </MainLayout>
     );
 }
