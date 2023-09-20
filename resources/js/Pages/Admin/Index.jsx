@@ -40,7 +40,7 @@ export default function Dashboard({ auth, products }) {
                         </div>
                         <form method="POST">
                             <button className="bg-none">
-                                <div className="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer">
+                                <div className="w-4 transform hover:text-red-500 hover:scale-110 cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
@@ -60,17 +60,19 @@ export default function Dashboard({ auth, products }) {
         >
             <Head title="Products" />
 
-            <div className="py-12">
-                <div className="max-w-5xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <table className="min-w-max table-auto w-full">
-                            <tbody className="text-gray-600 text-sm font-light">
-                                {productRows}
-                            </tbody>
-                        </table>
-                    </div>
+            <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 py-12 flex flex-col">
+                <Link href={route('admin.create')} className='bg-white text-gray-600 pb-2 pt-1 px-6 mb-2 rounded-md shadow-sm hover:bg-gray-100 self-end'>
+                    New Post <span className='text-2xl font-light'>+</span>
+                </Link>
+                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <table className="min-w-max table-auto w-full">
+                        <tbody className="text-gray-600 font-light">
+                            {productRows}
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
         </AuthenticatedLayout>
     );
 }
