@@ -30,7 +30,7 @@ export default function FilterBar({ categories }) {
                         placeholder='$$$' 
                         name='min' 
                         value={data.minPrice} 
-                        onChange={e => setData('minPrice', e.target.value)} />
+                        onChange={e => e.target.value > 0 ? setData('minPrice', e.target.value) : setData('minPrice', '')} />
                 </label>
                 <label htmlFor='max'>
                     Max: <input 
@@ -39,7 +39,7 @@ export default function FilterBar({ categories }) {
                         placeholder='$$$' 
                         name='max' 
                         value={data.maxPrice} 
-                        onChange={e => setData('maxPrice', e.target.value)} />
+                        onChange={e => e.target.value > 0 ? setData('maxPrice', e.target.value) : setData('maxPrice', '')} />
                 </label>
                 <label>
                     Search: <input 
