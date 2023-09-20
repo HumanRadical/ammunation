@@ -10,7 +10,7 @@ export default function Index({ auth, products, categories, query }) {
     return (
         <Layout auth={auth} head='Shop'>
             <FilterBar categories={categories} query={query} />
-            <main className='grid grid-cols-4 w-2/3 mx-auto mb-10'>
+            <main className='grid grid-cols-4 gap-8 w-2/3 mx-auto m-10'>
                 {productCards}
             </main>
         </Layout>
