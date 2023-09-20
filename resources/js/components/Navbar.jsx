@@ -3,7 +3,7 @@ import ApplicationLogo from './ApplicationLogo';
 
 export default function Navbar({ auth }) {
     return (
-        <nav className="p-6 bg-red-600 w-full grid grid-cols-8">
+        <nav className="p-6 bg-red-700 w-full grid grid-cols-8">
             <div className='my-auto space-x-4'>
                 <Link
                     href={route('home')}
