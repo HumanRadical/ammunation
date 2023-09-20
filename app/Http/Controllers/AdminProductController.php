@@ -13,4 +13,9 @@ class AdminProductController extends Controller
             'products' => Product::all()
         ]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Admin/Create');
+    }
 }

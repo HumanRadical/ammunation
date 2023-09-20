@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth, products }) {
+export default function Index({ auth, products }) {
     const productRows = products.map(product => {
         return (
             <tr className="border-b border-gray-200 hover:bg-gray-100">
@@ -56,9 +56,9 @@ export default function Dashboard({ auth, products }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Products</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">All Products</h2>}
         >
-            <Head title="Products" />
+            <Head title="All Products" />
 
             <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 py-12 flex flex-col">
                 <Link href={route('admin.create')} className='bg-white text-gray-600 pb-2 pt-1 px-6 mb-2 rounded-md shadow-sm hover:bg-gray-100 self-end'>
