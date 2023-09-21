@@ -4,25 +4,25 @@ import { Head, Link, router } from '@inertiajs/react';
 export default function Index({ auth, products }) {
     const productRows = products.map(product => {
         return (
-            <tr className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-4 text-left whitespace-nowrap">
+            <tr className="border-b border-gray-200 hover:bg-gray-100 py-4 px-8 grid grid-cols-5">
+                <td className="text-left whitespace-nowrap">
                     <img 
                         className='bg-gray-300 inline w-10 mr-3 border border-black'
                         src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
                         alt={product.image} />
                     <span className="font-medium">{product.name}</span>
                 </td>
-                <td className="py-3 px-4 text-left">
+                <td className="text-left my-auto">
                     <span>{product.category.name}</span>
                 </td>
-                <td className="py-3 px-4 text-left text-green-500">
+                <td className="text-left my-auto text-green-500">
                     <span>${product.price}</span>
                 </td>
-                <td className="py-3 px-4 text-center">
-                    <span className="bg-blue-200 text-blue-500 py-1 px-3 rounded-full text-xs">Available</span>
+                <td className="text-center my-auto">
+                    <span className="bg-blue-200 text-blue-500 py-1 px-3 rounded-full text-sm">Available</span>
                 </td>
-                <td className="py-3 px-4 text-center">
-                    <div className="flex item-center justify-center">
+                <td className="my-auto text-center">
+                    <div className="flex item-center justify-end">
                         <div className="w-4 mr-2 transform hover:text-green-400 hover:scale-110">
                             <Link href={route('shop.show', { product: product })}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
