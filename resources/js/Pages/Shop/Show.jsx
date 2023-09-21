@@ -10,7 +10,7 @@ export default function Show({ auth, product }) {
                     <span className='text-2xl font-bold my-auto'>Back</span>
                 </Link>
                 <img 
-                    className='border-4 border-black p-3 bg-gray-300 w-full' 
+                    className='border-4 border-black bg-gray-300 w-full' 
                     src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
                     alt='Gun' />
                 <div className='max-w-4xl mx-auto grid'>
