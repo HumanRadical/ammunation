@@ -28,7 +28,7 @@ export default function Edit({ auth, product }) {
                         <img className='w-8 h-8 mr-1' src='http://localhost:8000/images/chevron-left.svg' alt='Back' />
                         <span className='text-2xl my-auto'>Back</span>
                     </Link>
-                    <ProductForm data={data} setData={setData} handleSubmit={handleSubmit} errors={errors} processing={processing} />
+                    <ProductForm image={product.image} data={data} setData={setData} handleSubmit={handleSubmit} errors={errors} processing={processing} />
                 </div>
             </div>
 

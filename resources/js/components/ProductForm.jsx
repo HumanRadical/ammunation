@@ -1,4 +1,4 @@
-export default function ProductForm ({ data, setData, handleSubmit, errors, processing }) {
+export default function ProductForm ({ image, data, setData, handleSubmit, errors, processing }) {
     return (
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
             <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
@@ -32,14 +32,17 @@ export default function ProductForm ({ data, setData, handleSubmit, errors, proc
             />
             {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
-            <input 
-                className='mt-1' 
-                type='file' 
-                id='image' 
-                accept='image/*' 
-                fileName={data.image}
-                onChange={e => setData('image', e.target.files[0])}
-            />
+            <div className='flex justify-between'>
+                <input 
+                    className='mt-1' 
+                    type='file' 
+                    id='image' 
+                    accept='image/*' 
+                    fileName={data.image}
+                    onChange={e => setData('image', e.target.files[0])}
+                />
+                { image && <img className='w-28 border border-black' src={'http://localhost:8000/storage/' + image} /> }
+            </div>
             {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>
             <textarea 
