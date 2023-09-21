@@ -13,7 +13,7 @@ class AdminProductController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Index', [
-            'products' => Product::all()
+            'products' => Product::latest()->get()
         ]);
     }
 
@@ -46,7 +46,7 @@ class AdminProductController extends Controller
         Product::create($attributes);
 
         return Inertia::render('Admin/Index', [
-            'products' => Product::all()
+            'products' => Product::latest()->get()
         ]);
     }
 }
