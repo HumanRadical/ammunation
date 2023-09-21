@@ -59,8 +59,8 @@ export default function Create({ auth }) {
                             type='file' 
                             id='image' 
                             accept='image/*' 
-                            value={data.image}
-                            onChange={e => setData('image', e.target.value)}
+                            fileName={data.image}
+                            onChange={e => setData('image', e.target.files[0])}
                         />
                         {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>

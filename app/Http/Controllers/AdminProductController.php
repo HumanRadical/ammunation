@@ -31,6 +31,7 @@ class AdminProductController extends Controller
             'description' => 'required',
         ]);
         $attributes['slug'] = Str::slug($attributes['name'], '-');
+        $attributes['image'] = request()->file('image')->store('images');
 
         $category = Category::where('name', request()->category)->first();
         if ($category) {
