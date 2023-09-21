@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Create({ auth }) {
-    const { data, setData, post, processing } = useForm()
+    const { data, setData, post, errors, processing } = useForm()
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,6 +32,7 @@ export default function Create({ auth }) {
                             onChange={e => setData('name', e.target.value)}
                             required
                         />
+                        {errors.name && <p className='text-red-500 mt-1'>{errors.name}</p>}
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
                         <input 
                             className='w-full border-gray-300 rounded-md mt-1' 
@@ -41,6 +42,7 @@ export default function Create({ auth }) {
                             onChange={e => setData('category', e.target.value)}
                             required
                         />
+                        {errors.category && <p className='text-red-500 mt-1'>{errors.category}</p>}
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
                         <input 
                             className='w-full border-gray-300 rounded-md mt-1' 
@@ -50,6 +52,7 @@ export default function Create({ auth }) {
                             onChange={e => setData('price', e.target.value)}
                             required
                         />
+                        {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
                         <input 
                             className='mt-1' 
@@ -59,6 +62,7 @@ export default function Create({ auth }) {
                             value={data.image}
                             onChange={e => setData('image', e.target.value)}
                         />
+                        {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>
                         <textarea 
                             className='w-full border-gray-300 rounded-md mt-1' 
@@ -67,6 +71,7 @@ export default function Create({ auth }) {
                             onChange={e => setData('description', e.target.value)}
                             required
                         >{data.description}</textarea>
+                        {errors.description && <p className='text-red-500 mt-1'>{errors.description}</p>}
                         <button 
                             className='bg-blue-500 max-w-min px-12 py-3 mt-10 mx-auto rounded-xl text-white text-xl tracking-wide'
                             disabled={processing}
