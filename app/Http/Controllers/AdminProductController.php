@@ -45,6 +45,13 @@ class AdminProductController extends Controller
         return to_route('admin.index');
     }
 
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return to_route('admin.index');
+    }
+
     public function validateProduct(?Product $product = null)
     {
         $product ??= new Product();
