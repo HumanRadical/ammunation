@@ -22,8 +22,33 @@ class AdminProductController extends Controller
         return Inertia::render('Admin/Create');
     }
 
-    public function store(Product $product)
+    public function store()
     {
+        $attributes = $this->validateProduct();
+        Product::create($attributes);
+
+        return to_route('admin.index');
+    }
+
+    public function edit(Product $product)
+    {
+        return Inertia::render('Admin/Edit', [
+            'product' => $product
+        ]);
+    }
+
+    public function update(Product $product)
+    {
+        $attributes = $this->validateProduct($product);
+        $product->update($attributes);
+
+        return to_route('admin.index');
+    }
+
+    public function validateProduct(?Product $product = null)
+    {
+        $product ??= new Product();
+
         $attributes = request()->validate([
             'name' => ['required', Rule::unique('products', 'name')->ignore($product)],
             'price' => ['required', 'numeric'],
@@ -46,10 +71,6 @@ class AdminProductController extends Controller
             $attributes['category_id'] = $newCategory->id;
         }
 
-        Product::create($attributes);
-
-        return Inertia::render('Admin/Index', [
-            'products' => Product::latest()->get()
-        ]);
+        return $attributes;
     }
 }
