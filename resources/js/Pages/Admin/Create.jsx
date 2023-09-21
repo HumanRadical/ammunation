@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Create({ auth }) {
     const handleSubmit = () => {
@@ -14,8 +14,12 @@ export default function Create({ auth }) {
             <Head title="New Product" />
 
             <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 py-12 flex flex-col">
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl p-10 py-16'>
+                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 py-12">
+                    <Link href={route('admin.index')} className='max-h-10 flex content-center mb-10'>
+                        <img className='w-8 h-8 mr-1' src="http://localhost:8000/images/chevron-left.svg" alt="Back" />
+                        <span className='text-2xl my-auto'>Back</span>
+                    </Link>
+                    <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
                         <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
                         <input className='w-full border-gray-300 rounded-md mt-1' type="text" name='name' id='name' />
                         <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
