@@ -14,7 +14,7 @@ export default function Show({ auth, product }) {
                     src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
                     alt='Gun' />
                 <div className='max-w-4xl mx-auto grid'>
-                    <h2 className='font-bold text-4xl mt-6'>{product.name}</h2>
+                    <h2 className='font-bold text-4xl'>{product.name}</h2>
                     <h3 className='text-gray-500 text-2xl'>{product.category.name}</h3>
                     <h3 className='text-green-500 text-2xl'>${product.price}</h3>
                     <h4 className='text-xl font-bold mt-4'>Description:</h4>
