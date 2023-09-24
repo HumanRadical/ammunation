@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['category'];
+    protected $with = ['category', 'reviews'];
 
     public function category()
     {

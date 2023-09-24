@@ -1,7 +1,11 @@
 import MainLayout from '@/Layouts/MainLayout';
+import ProductReview from '@/components/ProductReview';
 import { Link } from '@inertiajs/react';
 
 export default function Show({ auth, product }) {
+    const reviews = product.reviews.map(review => {
+        return <ProductReview review={review} key={review.id} />
+    })
     return (
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 m-12 auto-rows-auto'>
@@ -32,17 +36,7 @@ export default function Show({ auth, product }) {
                     <p className='text-lg mt-2'>{product.description}</p>
                     <h4 className='text-3xl font-bold mt-6'>Reviews:</h4>
                     <div>
-                        <article className='border border-gray-300 rounded-lg py-4 px-7 mt-3'>
-                            <div className='flex justify-between'>
-                                <div className='flex gap-2'>
-                                    <img className='border border-black rounded-full w-10 h-10 my-auto' src='https://people.com/thmb/qXgZGus8WMQFvj5ekGJL80i2z-4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(799x0:801x2)/41611641_331860500894482_7053792236417950114_n-2000-a7bb67e109ab455898b43a4cc3158af1.jpg' alt="" />
-                                    <h5 className='font-bold text-xl my-auto'>Kanye West</h5>
-                                    <img className='w-28 my-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/5_stars.svg/2560px-5_stars.svg.png" alt="" />
-                                </div>
-                                <time className='my-auto text-gray-500 text-sm'>Posted 3 days ago.</time>
-                            </div>
-                            <p className='mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa dolores beatae consectetur rerum et optio culpa, id voluptas nihil quos quibusdam quidem excepturi quas in molestias officia repellat laboriosam. Exercitationem.</p>
-                        </article>
+                        {reviews}
                     </div>
                 </div>
             </div>
