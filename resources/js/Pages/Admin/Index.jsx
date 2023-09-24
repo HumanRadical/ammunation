@@ -4,7 +4,7 @@ import { Head, Link, router } from '@inertiajs/react';
 export default function Index({ auth, products }) {
     const productRows = products.map(product => {
         return (
-            <tr className="border-b border-gray-200 hover:bg-gray-100 py-4 px-8 grid grid-cols-5">
+            <tr className="border-b border-gray-200 hover:bg-gray-100 py-4 px-8 grid grid-cols-5" key={product.id}>
                 <td className="text-left whitespace-nowrap">
                     <img 
                         className='bg-gray-300 inline w-10 mr-3 border border-black'

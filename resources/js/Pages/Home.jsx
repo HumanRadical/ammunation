@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 
 export default function Home({ auth, categories }) {
     const categoryCards = categories.map(category => {
-        return <CategoryCard category={category} />
+        return <CategoryCard category={category} key={category.id} />
     })
 
     return (
