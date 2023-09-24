@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,10 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::truncate();
-        Category::truncate();
+        Category::query()->delete();
+        Product::query()->delete();
+        Review::query()->delete();
+        User::query()->delete();
 
-        Category::factory(4)->create();
-        Product::factory(15)->create();
+        Category::factory(6)->create();
+        Product::factory(20)->create();
+        Review::factory(100)->create();
     }
 }

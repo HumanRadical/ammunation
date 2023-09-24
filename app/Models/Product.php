@@ -18,6 +18,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['category'] ?? false, fn ($query, $category) =>
