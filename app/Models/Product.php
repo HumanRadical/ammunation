@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['category', 'reviews'];
+    protected $with = ['category'];
 
     public function category()
     {
@@ -21,6 +21,11 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getStarsAttribute()
+    {
+        return $this->reviews->pluck('stars')->avg();
     }
 
     public function scopeFilter($query, array $filters)
