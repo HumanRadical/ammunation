@@ -1,6 +1,5 @@
 import { Link, useForm } from '@inertiajs/react';
 import ResponsiveStarBar from './ResponsiveStarBar';
-import { useEffect, useState } from 'react';
 
 export default function ReviewForm({ auth, product }) {
     const { data, setData, post, reset, errors, processing } = useForm({
