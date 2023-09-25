@@ -16,12 +16,12 @@ export default function FilterBar({ categories, query }) {
         get('/shop', { preserveState: true })
     }
 
+    let selectedCategory = ''
     const categoryOptions = categories.map(category => {
-        let isSelected = false
         if (query.category === category.slug) {
-            isSelected = true
+            selectedCategory = category.slug
         }
-        return <option value={category.slug} key={category.id} selected={isSelected}>{category.name}</option>
+        return <option value={category.slug} key={`category${category.id}`}>{category.name}</option>
     })
 
     return (
@@ -30,7 +30,8 @@ export default function FilterBar({ categories, query }) {
                 <label>
                     Category: <select 
                         name='category' 
-                        onChange={e => setData('category', e.target.value)}>
+                        onChange={e => setData('category', e.target.value)}
+                        defaultValue={selectedCategory}>
                         <option value=''>All</option>
                         {categoryOptions}
                     </select>
