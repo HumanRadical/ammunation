@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
                 src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'}
                 alt={product.name}/>
             <h3 className='font-bold text-lg mt-3'>{product.name}</h3>
-            <StarBar stars={product.stars} />
+            <StarBar stars={product.stars} starBarKey={`product${product.id}`} />
             <h4 className='text-gray-500 mt-1'>{product.category.name}</h4>
             <h5 className='text-green-500'>${product.price}</h5>
         </Link>
