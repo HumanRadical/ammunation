@@ -6,6 +6,7 @@ export default function Show({ auth, product }) {
     const reviews = product.reviews.map(review => {
         return <ProductReview review={review} key={review.id} />
     })
+
     return (
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 m-12 auto-rows-auto'>
@@ -22,7 +23,7 @@ export default function Show({ auth, product }) {
                         <Link href={route('shop.index', { category: product.category.slug })}>
                             <button className='border-2 border-blue-500 rounded-md text-blue-500 text-lg px-2 py-px'>{product.category.name}</button>
                         </Link>
-                        <h4 className='text-2xl mt-4'>Manufacturer</h4>
+                        <h4 className='text-xl text-gray-600 mt-4'>{product.manufacturer}</h4>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
                         <h3 className='text-green-500 text-3xl font-bold mt-2'>${product.price} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>

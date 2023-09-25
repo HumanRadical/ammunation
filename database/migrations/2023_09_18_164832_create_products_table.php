@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('manufacturer');
             $table->foreignId('category_id');
             $table->string('image')->nullable();
             $table->double('price');
+            $table->double('stars')->nullable();
             $table->text('description');
             $table->timestamps();
         });
