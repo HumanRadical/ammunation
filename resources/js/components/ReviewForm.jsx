@@ -3,7 +3,7 @@ import ResponsiveStarBar from './ResponsiveStarBar';
 import { useEffect, useState } from 'react';
 
 export default function ReviewForm({ auth, product }) {
-    const [stars, setStars] = useState(1)
+    const [stars, setStars] = useState(0)
 
     const { data, setData, post, errors, processing } = useForm({
         stars: stars
@@ -28,6 +28,7 @@ export default function ReviewForm({ auth, product }) {
                     <form className='flex flex-wrap mt-3' onSubmit={handleSubmit}>
                         <img className='rounded-full w-10 h-10 my-auto' src='http://localhost:8000/images/user_icon.png' alt='User Icon' />
                         <ResponsiveStarBar className='h-7 my-auto ml-2' stars={stars} setStars={setStars} />
+                        {errors.stars && <p className='text-red-500 mt-1 w-full'>{errors.stars}</p>}
                         <textarea 
                             className='w-full mt-3 rounded-lg border-gray-500' 
                             name='body'

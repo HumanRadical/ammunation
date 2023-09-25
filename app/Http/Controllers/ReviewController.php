@@ -9,7 +9,7 @@ class ReviewController extends Controller
     public function store(Product $product)
     {
         request()->validate([
-            'stars' => 'required',
+            'stars' => ['required', 'numeric', 'min:0.5', 'max:5'],
             'body' => 'required'
         ]);
 
