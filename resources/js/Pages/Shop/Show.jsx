@@ -43,7 +43,7 @@ export default function Show({ auth, product }) {
                     <p className='text-lg mt-2'>{product.description}</p>
                     <h4 className='text-3xl font-bold mt-6'>Reviews:</h4>
                     <div>
-                        <ReviewForm auth={auth} />
+                        <ReviewForm auth={auth} product={product} />
                         {reviews}
                     </div>
                 </div>
