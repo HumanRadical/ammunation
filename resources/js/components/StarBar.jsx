@@ -1,4 +1,4 @@
-export default function StarBar({ stars, props }) {
+export default function StarBar({ stars, className = '' }) {
     let starIcons = []
 
     for (let i = 0; i < Math.floor(stars); i++) {
@@ -12,7 +12,7 @@ export default function StarBar({ stars, props }) {
     }
 
     return (
-        <span {...props} className='flex'>
+        <span className={`flex ${className}`}>
             {starIcons}
         </span>
     )

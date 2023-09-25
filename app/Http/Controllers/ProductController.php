@@ -21,8 +21,22 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $this->calcStars([$product]);
         return Inertia::render('Shop/Show', [
             'product' => $product
         ]);
+    }
+
+    public function calcStars(Array $products)
+    {
+        foreach ($products as $product) {
+            $avgStars = 0;
+            foreach ($product->reviews->pluck('stars') as $stars) {
+                $avgStars += $stars;
+            }
+            $avgStars /= count($product->reviews);
+        }
+
+        $product->update(['stars' => $avgStars]);
     }
 }

@@ -1,5 +1,6 @@
 import MainLayout from '@/Layouts/MainLayout';
 import ProductReview from '@/components/ProductReview';
+import StarBar from '@/components/StarBar';
 import { Link } from '@inertiajs/react';
 
 export default function Show({ auth, product }) {
@@ -25,7 +26,11 @@ export default function Show({ auth, product }) {
                         </Link>
                         <h4 className='text-xl text-gray-600 mt-4'>{product.manufacturer}</h4>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
-                        <h3 className='text-green-500 text-3xl font-bold mt-2'>${product.price} <span className='text-lg text-black font-normal'>+ tax</span></h3>
+                        <h3 className='flex text-xl mt-2'>
+                            {Math.round(product.stars * 100) / 100} / 5 stars
+                            <StarBar className='h-6 ml-2' stars={product.stars} />
+                        </h3>
+                        <h3 className='text-green-500 text-3xl font-bold mt-1'>${product.price} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>
                     <button 
                         className='bg-orange-400 hover:bg-orange-500 transition h-12 py-2 mt-10 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
