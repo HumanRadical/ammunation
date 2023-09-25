@@ -7,7 +7,7 @@ export default function ProductReview({ review }) {
                     <h5 className='font-bold text-xl my-auto'>{review.user.name}</h5>
                     <img className='w-28 my-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/5_stars.svg/2560px-5_stars.svg.png" alt="" />
                 </div>
-                <time className='my-auto text-gray-500 text-sm'>Posted {review.created_at}</time>
+                <span className='my-auto text-gray-500 text-sm'>Posted <time>{review.created_at}</time></span>
             </div>
             <p className='mt-2'>{review.body}</p>
         </article>
