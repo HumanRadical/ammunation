@@ -1,5 +1,6 @@
 import MainLayout from '@/Layouts/MainLayout';
 import ProductReview from '@/components/ProductReview';
+import ReviewForm from '@/components/ReviewForm';
 import StarBar from '@/components/StarBar';
 import { Link } from '@inertiajs/react';
 
@@ -42,6 +43,7 @@ export default function Show({ auth, product }) {
                     <p className='text-lg mt-2'>{product.description}</p>
                     <h4 className='text-3xl font-bold mt-6'>Reviews:</h4>
                     <div>
+                        <ReviewForm auth={auth} />
                         {reviews}
                     </div>
                 </div>
