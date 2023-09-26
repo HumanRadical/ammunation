@@ -25,7 +25,7 @@ export default function FilterBar({ categories, query }) {
     })
 
     return (
-        <div className='p-3 border-b border-t bg-black flex justify-center'>
+        <div className='p-4 border-b border-t bg-black flex justify-center'>
             <form className='space-x-3' onSubmit={handleSubmit}>
                 <label>
                     Category: <select 
