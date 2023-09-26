@@ -18,7 +18,7 @@ export default function Index({ auth, products }) {
                 <Link href={route('admin.create')} className='bg-white text-gray-600 pb-2 pt-1 px-6 mb-2 rounded-md shadow-sm hover:bg-gray-100 self-end'>
                     Add Product <span className='text-2xl font-light'>+</span>
                 </Link>
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div className="bg-white overflow-hidden shadow-sm sm:rounded-md">
                     <table className="min-w-max table-auto w-full">
                         <tbody className="text-gray-600 font-light">
                             {productRows}
