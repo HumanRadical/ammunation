@@ -23,9 +23,9 @@ export default function Show({ auth, product }) {
                 <div className='border-2 border-gray-400 rounded-xl p-8 flex flex-col justify-between'>
                     <div>
                         <Link href={route('shop.index', { category: product.category.slug })}>
-                            <button className='border-2 border-blue-500 rounded-md text-blue-500 text-lg px-2 py-px'>{product.category.name}</button>
+                            <button className='border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-md text-lg px-2 py-px'>{product.category.name}</button>
                         </Link>
-                        <h4 className='text-xl text-gray-600 mt-4'>{product.manufacturer}</h4>
+                        <h4 className='text-xl text-gray-600 hover:underline mt-4'>{product.manufacturer}</h4>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
                         <h3 className='flex text-xl mt-2'>
                             {Math.round(product.stars * 100) / 100} / 5 stars
