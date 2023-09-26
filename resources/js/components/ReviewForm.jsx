@@ -19,7 +19,7 @@ export default function ReviewForm({ auth, product }) {
     }
 
     return (
-        <div className='border border-gray-300 rounded-lg py-4 px-7 mt-3'>
+        <div className='border border-black rounded-lg py-4 px-7 mt-3 bg-gray-400 text-black'>
             {
                 auth.user
                 ? 

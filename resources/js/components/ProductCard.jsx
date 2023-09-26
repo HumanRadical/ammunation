@@ -3,15 +3,17 @@ import StarBar from './StarBar';
 
 export default function ProductCard({ product }) {
     return (
-        <Link href={route('shop.show', { product: product })} className='border-2 border-black rounded-xl p-5'>
+        <Link href={route('shop.show', { product: product })} className='border-2 border-black rounded-xl p-5 bg-gray-400 text-black'>
             <img 
                 className='border-2 border-black w-full bg-gray-300' 
                 src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'}
                 alt={product.name}/>
-            <h3 className='font-bold text-lg mt-3'>{product.name}</h3>
+            <h3 className='font-bold text-xl mt-3'>{product.name}</h3>
             <StarBar stars={product.stars} starBarKey={`product${product.id}`} />
-            <h4 className='text-gray-500 mt-1'>{product.category.name}</h4>
-            <h5 className='text-green-500'>${product.price}</h5>
+            <Link href={route('shop.index', { category: product.category.slug })}>
+                <h4 className='text-white mt-1 hover:underline'>{product.category.name}</h4>
+            </Link>
+            <h5 className='text-green-400'>${product.price}</h5>
         </Link>
     );
 }

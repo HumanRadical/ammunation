@@ -18,7 +18,7 @@ export default function Home({ auth, categories }) {
                 </button>
             </div>
             <h2 className='text-3xl text-center mt-8 mb-4'>Shop by Category:</h2>
-            <div className='w-1/2 mx-auto grid grid-cols-2 grid-rows-2 mb-8'>
+            <div className='w-1/2 mx-auto grid grid-cols-2 grid-rows-2 pb-8'>
                 {categoryCards}
             </div>
         </MainLayout>

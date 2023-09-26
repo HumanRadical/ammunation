@@ -3,13 +3,14 @@ import Navbar from '@/components/Navbar';
 import { Head } from '@inertiajs/react';
 
 export default function MainLayout({ auth, head, children, ...props }) {
+    const metalGrid = 'http://localhost:8000/images/metal_grid.jpg'
 
     return (
-        <div className='min-h-screen grid grid-rows-none'>
+        <div className='grid'>
             <div>
                 <Head title={head} />
                 <Navbar auth={auth} />
-                <div {...props}>
+                <div className='min-h-screen text-white' style={{ backgroundImage: `url(${metalGrid}` }} {...props}>
                     {children}
                 </div>
             </div>

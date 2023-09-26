@@ -25,10 +25,11 @@ export default function FilterBar({ categories, query }) {
     })
 
     return (
-        <div className='p-3 border-b border-gray-300 flex justify-center'>
+        <div className='p-3 border-b border-t bg-black flex justify-center'>
             <form className='space-x-3' onSubmit={handleSubmit}>
                 <label>
                     Category: <select 
+                        className='text-black'
                         name='category' 
                         onChange={e => setData('category', e.target.value)}
                         defaultValue={selectedCategory}>
@@ -38,7 +39,7 @@ export default function FilterBar({ categories, query }) {
                 </label>
                 <label>
                     Min: <input 
-                        className='w-20' 
+                        className='w-20 text-black' 
                         type='number' 
                         placeholder='$$$' 
                         name='min' 
@@ -47,7 +48,7 @@ export default function FilterBar({ categories, query }) {
                 </label>
                 <label htmlFor='max'>
                     Max: <input 
-                        className='w-20' 
+                        className='w-20 text-black' 
                         type='number' 
                         placeholder='$$$' 
                         name='max' 
@@ -56,6 +57,7 @@ export default function FilterBar({ categories, query }) {
                 </label>
                 <label>
                     Search: <input 
+                        className='text-black'
                         type='text' 
                         placeholder='Glock-19...' 
                         name='search' 
