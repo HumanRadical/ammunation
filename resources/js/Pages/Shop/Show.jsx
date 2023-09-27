@@ -12,10 +12,10 @@ export default function Show({ auth, product }) {
     return (
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 p-12 auto-rows-auto'>
-                <Link href={route('shop.index')} className='max-h-10 flex content-center'>
+                <button onClick={history.back()} className='max-h-10 flex content-center'>
                     <img className='w-10 mr-2' src="http://localhost:8000/images/pistol_icon.png" alt="Back"/>
                     <span className='text-2xl font-bold my-auto'>Back</span>
-                </Link>
+                </button>
                 <img 
                     className='border-4 border-black bg-gray-300 w-full' 
                     src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
