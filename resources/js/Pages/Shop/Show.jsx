@@ -12,7 +12,7 @@ export default function Show({ auth, product }) {
     return (
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 p-12 auto-rows-auto'>
-                <button onClick={history.back()} className='max-h-10 flex content-center'>
+                <button onClick={() => history.back()} className='max-h-10 flex content-center'>
                     <img className='w-10 mr-2' src="http://localhost:8000/images/pistol_icon.png" alt="Back"/>
                     <span className='text-2xl font-bold my-auto'>Back</span>
                 </button>
