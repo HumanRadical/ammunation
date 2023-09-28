@@ -13,12 +13,12 @@ export default function Show({ auth, product }) {
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-x-10 p-12 auto-rows-auto'>
                 <button onClick={() => history.back()} className='max-h-10 flex content-center'>
-                    <img className='w-10 mr-2' src="http://localhost:8000/images/pistol_icon.png" alt="Back"/>
+                    <img className='w-10 mr-2' src="/images/pistol_icon.png" alt="Back"/>
                     <span className='text-2xl font-bold my-auto'>Back</span>
                 </button>
                 <img 
                     className='border-4 border-black bg-gray-300 w-full' 
-                    src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
+                    src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'} 
                     alt='Gun' />
                 <div className='border-2 border-black rounded-xl p-8 flex flex-col justify-between bg-gray-400 text-black'>
                     <div>

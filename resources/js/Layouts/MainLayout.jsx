@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import { Head } from '@inertiajs/react';
 
 export default function MainLayout({ auth, head, children, ...props }) {
-    const metalGrid = 'http://localhost:8000/images/metal_grid.jpg'
+    const metalGrid = '/images/metal_grid.jpg'
 
     return (
         <div className='grid'>

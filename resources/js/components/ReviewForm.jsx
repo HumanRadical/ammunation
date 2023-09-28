@@ -26,7 +26,7 @@ export default function ReviewForm({ auth, product }) {
                 <>
                     <h3 className='text-2xl font-bold'>Add a review:</h3>
                     <form className='flex flex-wrap mt-3' onSubmit={handleSubmit}>
-                        <img className='rounded-full w-10 h-10 my-auto' src='http://localhost:8000/images/user_icon.png' alt='User Icon' />
+                        <img className='rounded-full w-10 h-10 my-auto' src='/images/user_icon.png' alt='User Icon' />
                         <ResponsiveStarBar className='h-7 my-auto ml-2' stars={data.stars} setData={setData} />
                         {errors.stars && <p className='text-red-500 mt-1 w-full'>{errors.stars}</p>}
                         <textarea 

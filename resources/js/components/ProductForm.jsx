@@ -50,7 +50,7 @@ export default function ProductForm ({ image, data, setData, handleSubmit, error
                     fileName={data.image}
                     onChange={e => setData('image', e.target.files[0])}
                 />
-                { image && <img className='w-28 border border-black' src={'http://localhost:8000/storage/' + image} /> }
+                { image && <img className='w-28 border border-black' src={'/storage/' + image} /> }
             </div>
             {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>

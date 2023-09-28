@@ -6,7 +6,7 @@ export default function ProductTableRow({ product }) {
             <td className="text-left whitespace-nowrap">
                 <img 
                     className='bg-gray-300 inline w-10 mr-3 border border-black'
-                    src={product.image ? `http://localhost:8000/storage/${product.image}` : 'http://localhost:8000/images/gun_icon.png'} 
+                    src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'} 
                     alt={product.image} />
                 <span className="font-medium">{product.name}</span>
             </td>
