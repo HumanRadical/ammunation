@@ -11,6 +11,15 @@ export default function ProductForm ({ image, data, setData, handleSubmit, error
                 required
             />
             {errors.name && <p className='text-red-500 mt-1'>{errors.name}</p>}
+            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='manufacturer'>MANUFACTURER</label>
+            <input 
+                className='w-full border-gray-300 rounded-md mt-1' 
+                type='text' 
+                id='manufacturer' 
+                value={data.manufacturer}
+                onChange={e => setData('manufacturer', e.target.value)}
+                required
+            />
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
             <input 
                 className='w-full border-gray-300 rounded-md mt-1' 

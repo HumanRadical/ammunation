@@ -58,6 +58,7 @@ class AdminProductController extends Controller
 
         $attributes = request()->validate([
             'name' => ['required', Rule::unique('products', 'name')->ignore($product)],
+            'manufacturer' => 'required',
             'price' => ['required', 'numeric'],
             'image' => 'image',
             'description' => 'required',
