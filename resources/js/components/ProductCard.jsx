@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
                 src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'}
                 alt={product.name}/>
             <h3 className='font-bold text-xl mt-3'>{product.name}</h3>
-            <StarBar stars={product.stars} starBarKey={`product${product.id}`} />
+            { product.reviews.length ? <StarBar stars={product.stars} starBarKey={`product${product.id}`} /> : '' }
             <Link href={route('shop.index', { category: product.category.slug })}>
                 <h4 className='text-white mt-1 hover:underline'>{product.category.name}</h4>
             </Link>

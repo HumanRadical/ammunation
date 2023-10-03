@@ -28,8 +28,8 @@ export default function Show({ auth, product }) {
                         <h4 className='text-xl text-white hover:underline mt-4'>{product.manufacturer}</h4>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
                         <h3 className='flex text-xl mt-2'>
-                            {Math.round(product.stars * 100) / 100} / 5 stars
-                            <StarBar className='h-6 ml-2' stars={product.stars} starBarKey={'product'} />
+                            { product.reviews.length ? `${Math.round(product.stars * 100) / 100} / 5 stars` : 'No reviews yet.' } 
+                            { product.reviews.length ? <StarBar className='h-6 ml-2' stars={product.stars} starBarKey={'product'} /> : '' }
                         </h3>
                         <h3 className='text-green-400 text-3xl font-bold mt-1'>${product.price} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>
