@@ -25,7 +25,9 @@ export default function Show({ auth, product }) {
                         <Link href={route('shop.index', { category: product.category.slug })}>
                             <button className='border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-md text-lg px-2 py-px'>{product.category.name}</button>
                         </Link>
-                        <h4 className='text-xl text-white hover:underline mt-4'>{product.manufacturer}</h4>
+                        <Link href={route('shop.index', { manufacturer: product.manufacturer.slug })}>
+                            <h4 className='text-xl text-white hover:underline mt-4'>{product.manufacturer.name}</h4>
+                        </Link>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
                         <h3 className='flex text-xl mt-2'>
                             { product.reviews.length ? `${Math.round(product.stars * 100) / 100} / 5 stars` : 'No reviews yet.' } 
