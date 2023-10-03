@@ -37,7 +37,8 @@ export default function Edit({ auth, product, manufacturers, categories }) {
                         setData={setData} 
                         handleSubmit={handleSubmit} 
                         errors={errors} 
-                        processing={processing} />
+                        processing={processing} 
+                    />
                 </div>
             </div>
 
