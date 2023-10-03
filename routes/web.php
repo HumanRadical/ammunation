@@ -37,7 +37,7 @@ Route::middleware('can:admin')->group(function () {
     Route::patch('/admin/products/{product:slug}', [AdminProductController::class, 'update'])->name('admin.update');
     Route::delete('/admin/products/{product:slug}', [AdminProductController::class, 'destroy'])->name('admin.destroy');
     Route::post('/admin/manufacturers', [AdminProductController::class, 'storeManufacturer'])->name('admin.storeManufacturer');
-    Route::post('/admin/products', [AdminProductController::class, 'storeCategory'])->name('admin.storeCategory');
+    Route::post('/admin/categories', [AdminProductController::class, 'storeCategory'])->name('admin.storeCategory');
 });
 
 require __DIR__.'/auth.php';
