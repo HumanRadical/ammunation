@@ -11,7 +11,12 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['category'];
+    protected $with = ['manufacturer', 'category'];
+
+    public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class);
+    }
 
     public function category()
     {
@@ -30,6 +35,11 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['manufacturer'] ?? false, fn ($query, $manufacturer) =>
+            $query->whereHas('manufacturer', fn ($query) =>
+            $query->where('slug', $manufacturer))
+        );
+
         $query->when($filters['category'] ?? false, fn ($query, $category) =>
             $query->whereHas('category', fn ($query) =>
             $query->where('slug', $category))

@@ -1,10 +1,11 @@
 import { useForm } from '@inertiajs/react'
 import { useEffect } from 'react'
 
-export default function FilterBar({ categories, query }) {
+export default function FilterBar({ manufacturers, categories, query }) {
     const { data, setData, get, processing } = useForm()
 
     useEffect(() => {
+        query.category && setData('manufacturer', query.manufacturer)
         query.category && setData('category', query.category)
         query.minPrice && setData('minPrice', query.minPrice)
         query.maxPrice && setData('maxPrice', query.maxPrice)
@@ -15,6 +16,14 @@ export default function FilterBar({ categories, query }) {
         event.preventDefault()
         get('/shop', { preserveState: true })
     }
+
+    let selectedManufacturer = ''
+    const manufacturerOptions = manufacturers.map(manufacturer => {
+        if (query.manufacturer === manufacturer.slug) {
+            selectedManufacturer = manufacturer.slug
+        }
+        return <option value={manufacturer.slug} key={`manufacturer${manufacturer.id}`}>{manufacturer.name}</option>
+    })
 
     let selectedCategory = ''
     const categoryOptions = categories.map(category => {
@@ -27,6 +36,16 @@ export default function FilterBar({ categories, query }) {
     return (
         <div className='p-4 border-b border-t bg-black flex justify-center'>
             <form className='space-x-3' onSubmit={handleSubmit}>
+                <label>
+                    Manufacturer: <select 
+                        className='text-black'
+                        name='manufacturer' 
+                        onChange={e => setData('manufacturer', e.target.value)}
+                        defaultValue={selectedManufacturer}>
+                        <option value=''>All</option>
+                        {manufacturerOptions}
+                    </select>
+                </label>
                 <label>
                     Category: <select 
                         className='text-black'
