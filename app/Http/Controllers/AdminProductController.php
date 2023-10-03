@@ -34,6 +34,28 @@ class AdminProductController extends Controller
         return to_route('admin.index');
     }
 
+    public function storeManufacturer()
+    {
+        $attributes = request()->validate([
+            'name' => ['required', Rule::unique('manufacturers', 'name')],
+        ]);
+        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        Manufacturer::create($attributes);
+
+        return back();
+    }
+
+    public function storeCategory()
+    {
+        $attributes = request()->validate([
+            'name' => ['required', Rule::unique('categories', 'name')],
+        ]);
+        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        Category::create($attributes);
+
+        return back();
+    }
+
     public function edit(Product $product)
     {
         return Inertia::render('Admin/Edit', [
