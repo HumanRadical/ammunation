@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Manufacturer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,7 @@ class ProductFactory extends Factory
         $name = ucfirst(fake()->word()) . '-' . fake()->randomNumber(2, false);
         return [
             'name' => $name,
-            'manufacturer' => ucwords(join(' ', fake()->words())),
+            'manufacturer_id' => Manufacturer::all()->random(),
             'slug' => Str::slug($name, '-'),
             'category_id' => Category::all()->random(),
             'price' => fake()->randomFloat(2, 100, 5000),
