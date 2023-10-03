@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacturer;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Validation\Rule;
@@ -19,7 +20,10 @@ class AdminProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Create');
+        return Inertia::render('Admin/Create', [
+            'manufacturers' => Manufacturer::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     public function store()
@@ -33,7 +37,9 @@ class AdminProductController extends Controller
     public function edit(Product $product)
     {
         return Inertia::render('Admin/Edit', [
-            'product' => $product
+            'product' => $product,
+            'manufacturers' => Manufacturer::all(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -58,7 +64,8 @@ class AdminProductController extends Controller
 
         $attributes = request()->validate([
             'name' => ['required', Rule::unique('products', 'name')->ignore($product)],
-            'manufacturer' => 'required',
+            'manufacturer_id' => ['required', Rule::exists('manufacturers', 'id')],
+            'category_id' => ['required', Rule::exists('categories', 'id')],
             'price' => ['required', 'numeric'],
             'image' => 'image',
             'description' => 'required',
@@ -66,17 +73,6 @@ class AdminProductController extends Controller
         $attributes['slug'] = Str::slug($attributes['name'], '-');
         if (isset($attributes['image'])) {
             request()->file('image')->store('images');
-        }
-
-        $category = Category::where('name', request()->category)->first();
-        if ($category) {
-            $attributes['category_id'] = $category->id;
-        } else {
-            $newCategory = Category::create([
-                'name' => request()->category,
-                'slug' => Str::slug(request()->category, '-')
-            ]);
-            $attributes['category_id'] = $newCategory->id;
         }
 
         return $attributes;

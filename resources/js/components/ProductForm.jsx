@@ -1,4 +1,12 @@
-export default function ProductForm ({ image, data, setData, handleSubmit, errors, processing }) {
+export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
+    const manufacturerOptions = manufacturers.map(manufacturer => {
+        return <option value={manufacturer.id} key={`manufacturer${manufacturer.id}`}>{manufacturer.name}</option>
+    })
+
+    const categoryOptions = categories.map(category => {
+        return <option value={category.id} key={`category${category.id}`}>{category.name}</option>
+    })
+
     return (
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
             <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
@@ -12,23 +20,19 @@ export default function ProductForm ({ image, data, setData, handleSubmit, error
             />
             {errors.name && <p className='text-red-500 mt-1'>{errors.name}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='manufacturer'>MANUFACTURER</label>
-            <input 
-                className='w-full border-gray-300 rounded-md mt-1' 
-                type='text' 
+            <select 
+                className='w-full border-gray-300 rounded-md mt-1'
                 id='manufacturer' 
-                value={data.manufacturer}
-                onChange={e => setData('manufacturer', e.target.value)}
-                required
-            />
+                value={data.manufacturer_id}
+                onChange={e => setData('manufacturer_id', e.target.value)}
+            >{manufacturerOptions}</select>
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
-            <input 
-                className='w-full border-gray-300 rounded-md mt-1' 
-                type='text' 
+            <select 
+                className='w-full border-gray-300 rounded-md mt-1'
                 id='category' 
-                value={data.category}
-                onChange={e => setData('category', e.target.value)}
-                required
-            />
+                value={data.category_id}
+                onChange={e => setData('category_id', e.target.value)}
+            >{categoryOptions}</select>
             {errors.category && <p className='text-red-500 mt-1'>{errors.category}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
             <input 
