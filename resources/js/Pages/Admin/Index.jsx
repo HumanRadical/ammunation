@@ -19,7 +19,7 @@ export default function Index({ auth, products }) {
                     Add Product <span className='text-2xl font-light'>+</span>
                 </Link>
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-md">
-                    <table className="min-w-max table-auto w-full">
+                    <table className="max-w-fit min-w-full table-auto">
                         <tbody className="text-gray-600 font-light">
                             {productRows}
                         </tbody>
