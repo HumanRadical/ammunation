@@ -1,5 +1,5 @@
 import { router } from '@inertiajs/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
     const [newManufacturer, setNewManufacturer] = useState(false)
@@ -30,16 +30,23 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
         }
     }
 
-    const saveNewManufacturer = () => {
-        router.post('/admin/manufacturers', { name: newManufacturerName })
+    const saveNewManufacturer = async () => {
+        await router.post('/admin/manufacturers', { name: newManufacturerName })
         setNewManufacturerName('')
         setNewManufacturer(false)
     }
+    useEffect(() => {
+        setData('manufacturer_id', manufacturers[manufacturers.length - 1].id)
+    }, [manufacturers])
+
     const saveNewCategory = event => {
         router.post('/admin/categories', { name: newCategoryName })
         setNewCategoryName('')
         setNewCategory(false)
     }
+    useEffect(() => {
+        setData('category_id', categories[categories.length - 1].id)
+    }, [categories])
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
