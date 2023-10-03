@@ -1,6 +1,13 @@
 import { Link, router } from '@inertiajs/react';
 
 export default function ProductTableRow({ product }) {
+    const truncateString = (str, num) => {
+        if (str.length <= num) {
+            return str
+        }
+        return str.slice(0, num) + '...'
+    }
+
     return (
         <tr className="border-b border-gray-200 hover:bg-gray-100 py-4 px-8 grid grid-cols-5" key={product.id}>
             <td className="text-left whitespace-nowrap">
@@ -8,10 +15,10 @@ export default function ProductTableRow({ product }) {
                     className='bg-gray-300 inline w-10 mr-3 border border-black'
                     src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'} 
                     alt={product.image} />
-                <span className="font-medium">{product.name}</span>
+                <span className="font-medium">{truncateString(product.name, 12)}</span>
             </td>
             <td className="text-left my-auto">
-                <span>{product.category.name}</span>
+                <span>{truncateString(product.category.name, 12)}</span>
             </td>
             <td className="text-left my-auto text-green-500">
                 <span>${product.price}</span>
