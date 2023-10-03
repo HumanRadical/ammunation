@@ -22,8 +22,8 @@ class ProductFactory extends Factory
         $name = ucfirst(fake()->word()) . '-' . fake()->randomNumber(2, false);
         return [
             'name' => $name,
-            'manufacturer_id' => Manufacturer::all()->random(),
             'slug' => Str::slug($name, '-'),
+            'manufacturer_id' => Manufacturer::all()->random(),
             'category_id' => Category::all()->random(),
             'price' => fake()->randomFloat(2, 100, 5000),
             'description' => fake()->paragraph(5),

@@ -17,7 +17,7 @@ class ManufacturerFactory extends Factory
      */
     public function definition(): array
     {
-        $name = ucfirst(implode(' ', fake()->words()));
+        $name = ucwords(implode(' ', fake()->words()));
         return [
             'name' => $name,
             'slug' => Str::slug($name, '-'),
