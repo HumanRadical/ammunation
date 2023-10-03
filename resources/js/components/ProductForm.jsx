@@ -1,8 +1,12 @@
+import { router } from '@inertiajs/react'
 import { useState } from 'react'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
     const [newManufacturer, setNewManufacturer] = useState(false)
     const [newCategory, setNewCategory] = useState(false)
+
+    const [newManufacturerName, setNewManufacturerName] = useState('')
+    const [newCategoryName, setNewCategoryName] = useState('')
 
     const manufacturerOptions = manufacturers.map(manufacturer => {
         return <option value={manufacturer.id} key={`manufacturer${manufacturer.id}`}>{manufacturer.name}</option>
@@ -26,11 +30,15 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
         }
     }
 
-    const saveNewManufacturer = event => {
-        //
+    const saveNewManufacturer = () => {
+        router.post('/admin/manufacturers', { name: newManufacturerName })
+        setNewManufacturerName('')
+        setNewManufacturer(false)
     }
     const saveNewCategory = event => {
-        //
+        router.post('/admin/categories', { name: newCategoryName })
+        setNewCategoryName('')
+        setNewCategory(false)
     }
 
     return (
@@ -50,7 +58,13 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                 newManufacturer
                 ? (
                     <div className='flex w-full mt-1'>
-                        <input className='border-gray-300 rounded-md flex-grow' type='text' id='manufacturer' autoFocus></input>
+                        <input 
+                            className='border-gray-300 rounded-md flex-grow' 
+                            type='text' 
+                            value={newManufacturerName}
+                            onChange={e => setNewManufacturerName(e.target.value)}
+                            id='manufacturer' 
+                            autoFocus></input>
                         <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewManufacturer}>SAVE</button>
                         <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewManufacturer(false)}>CANCEL</button>
                     </div>
@@ -71,7 +85,13 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                 newCategory
                 ? (
                     <div className='flex w-full mt-1'>
-                        <input className='border-gray-300 rounded-md flex-grow' type='text' id='category' autoFocus></input>
+                        <input 
+                            className='border-gray-300 rounded-md flex-grow' 
+                            type='text' 
+                            value={newCategoryName}
+                            onChange={e => setNewCategoryName(e.target.value)}
+                            id='category' 
+                            autoFocus></input>
                         <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewCategory}>SAVE</button>
                         <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewCategory(false)}>CANCEL</button>
                     </div>
