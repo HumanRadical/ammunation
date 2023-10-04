@@ -2,8 +2,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ProductForm from '@/components/ProductForm';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function Edit({ auth, product, manufacturers, categories }) {
-    const { data, setData, patch, errors, processing } = useForm({
+export default function Edit({ auth, errors, product, manufacturers, categories }) {
+    const { data, setData, patch, processing } = useForm({
         name: product.name,
         manufacturer_id: product.manufacturer.id,
         category_id: product.category.id,

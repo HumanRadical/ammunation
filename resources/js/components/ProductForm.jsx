@@ -8,6 +8,27 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
     const [newManufacturerName, setNewManufacturerName] = useState('')
     const [newCategoryName, setNewCategoryName] = useState('')
 
+    // WIP
+    // ===================================================================
+    // const [manufacturerErrors, setManufacturerErrors] = useState(false)
+    // const [categoryErrors, setCategoryErrors] = useState(false)
+
+    // useEffect(() => {
+    //     if (errors.manufacturers) {
+    //         setManufacturerErrors(true)
+    //         setTimeout(() => {
+    //             setManufacturerErrors(false)
+    //         }, 3000)
+    //     }
+    //     if (errors.categories) {
+    //         setCategoryErrors(true)
+    //         setTimeout(() => {
+    //             setCategoryErrors(false)
+    //         }, 3000)
+    //     }
+    // }, [errors])
+    // ===================================================================
+
     const manufacturerOptions = manufacturers.map(manufacturer => {
         return <option value={manufacturer.id} key={`manufacturer${manufacturer.id}`}>{manufacturer.name}</option>
     })
@@ -30,8 +51,8 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
         }
     }
 
-    const saveNewManufacturer = async () => {
-        await router.post('/admin/manufacturers', { name: newManufacturerName })
+    const saveNewManufacturer = () => {
+        router.post('/admin/manufacturers', { name: newManufacturerName })
         setNewManufacturerName('')
         setNewManufacturer(false)
     }
@@ -87,6 +108,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     </select>
                 )
             }
+            {/* {manufacturerErrors && <p className='text-red-500 mt-1'>Invalid manufacturer name.</p>} */}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
             {
                 newCategory
@@ -114,7 +136,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     </select>
                 )
             }
-            {errors.category && <p className='text-red-500 mt-1'>{errors.category}</p>}
+            {/* {categoryErrors && <p className='text-red-500 mt-1'>Invalid category name.</p>} */}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
             <input 
                 className='border-gray-300 rounded-md mt-1' 

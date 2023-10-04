@@ -2,8 +2,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ProductForm from '@/components/ProductForm';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function Create({ auth, manufacturers, categories }) {
-    const { data, setData, post, errors, processing } = useForm()
+export default function Create({ auth, errors, manufacturers, categories }) {
+    debugger
+    const { data, setData, post, processing } = useForm()
 
     const handleSubmit = (event) => {
         event.preventDefault();

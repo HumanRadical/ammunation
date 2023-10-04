@@ -36,10 +36,10 @@ class AdminProductController extends Controller
 
     public function storeManufacturer()
     {
-        $attributes = $this->validateOther('manufacturer');
+        $attributes = $this->validateOther('manufacturers');
         Manufacturer::create($attributes);
 
-        return back();
+        return back()->withErrors($attributes, 'manufacturers');
     }
 
     public function storeCategory()
@@ -47,7 +47,7 @@ class AdminProductController extends Controller
         $attributes = $this->validateOther('categories');
         Category::create($attributes);
 
-        return back();
+        return back()->withErrors($attributes, 'categories');
     }
 
     public function edit(Product $product)
@@ -101,7 +101,7 @@ class AdminProductController extends Controller
         $attributes = request();
         $attributes['slug'] = Str::slug($attributes['name'], '-');
 
-        return $attributes->validate([
+        return $attributes->validateWithBag($type, [
             'name' => ['required', Rule::unique($type, 'name')],
             'slug' => ['required', Rule::unique($type, 'slug')],
         ]);
