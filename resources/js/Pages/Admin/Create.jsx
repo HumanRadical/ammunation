@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import ProductForm from '@/components/ProductForm';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function Create({ auth }) {
+export default function Create({ auth, manufacturers, categories }) {
     const { data, setData, post, errors, processing } = useForm()
 
     const handleSubmit = (event) => {
@@ -23,7 +23,14 @@ export default function Create({ auth }) {
                         <img className='w-8 h-8 mr-1' src='/images/chevron-left.svg' alt='Back' />
                         <span className='text-2xl my-auto'>Back</span>
                     </button>
-                    <ProductForm data={data} setData={setData} handleSubmit={handleSubmit} errors={errors} processing={processing} />
+                    <ProductForm 
+                        manufacturers={manufacturers} 
+                        categories={categories} 
+                        data={data} 
+                        setData={setData} 
+                        handleSubmit={handleSubmit} 
+                        errors={errors} 
+                        processing={processing} />
                 </div>
             </div>
 
