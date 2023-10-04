@@ -36,10 +36,7 @@ class AdminProductController extends Controller
 
     public function storeManufacturer()
     {
-        $attributes = request()->validate([
-            'name' => ['required', Rule::unique('manufacturers', 'name')],
-        ]);
-        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        $attributes = $this->validateOther('manufacturer');
         Manufacturer::create($attributes);
 
         return back();
@@ -47,10 +44,7 @@ class AdminProductController extends Controller
 
     public function storeCategory()
     {
-        $attributes = request()->validate([
-            'name' => ['required', Rule::unique('categories', 'name')],
-        ]);
-        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        $attributes = $this->validateOther('categories');
         Category::create($attributes);
 
         return back();
@@ -98,5 +92,15 @@ class AdminProductController extends Controller
         }
 
         return $attributes;
+    }
+
+    public function validateOther(String $type)
+    {
+        $attributes = request();
+        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        return $attributes->validate([
+            'name' => ['required', Rule::unique($type, 'name')],
+            'slug' => ['required', Rule::unique($type, 'slug')],
+        ]);
     }
 }
