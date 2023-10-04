@@ -42,4 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected $appends = [
+        'is_admin',
+    ];
+
+    public function getIsAdminAttribute()
+    {
+        return $this->email === 'easton.meth@gmail.com';
+    }
 }
