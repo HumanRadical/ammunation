@@ -5,7 +5,7 @@ export default function FilterBar({ manufacturers, categories, query }) {
     const { data, setData, get, processing } = useForm()
 
     useEffect(() => {
-        query.category && setData('manufacturer', query.manufacturer)
+        query.manufacturer && setData('manufacturer', query.manufacturer)
         query.category && setData('category', query.category)
         query.minPrice && setData('minPrice', query.minPrice)
         query.maxPrice && setData('maxPrice', query.maxPrice)
@@ -13,9 +13,13 @@ export default function FilterBar({ manufacturers, categories, query }) {
     }, [])
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event && event.preventDefault()
         get('/shop', { preserveState: true })
     }
+
+    useEffect(() => {
+        handleSubmit()
+    }, [data.category, data.manufacturer])
 
     let selectedManufacturer = ''
     const manufacturerOptions = manufacturers.map(manufacturer => {
@@ -63,15 +67,17 @@ export default function FilterBar({ manufacturers, categories, query }) {
                         placeholder='$$$' 
                         name='min' 
                         value={data.minPrice} 
+                        onBlur={handleSubmit}
                         onChange={e => e.target.value > 0 ? setData('minPrice', e.target.value) : setData('minPrice', '')} />
                 </label>
-                <label htmlFor='max'>
+                <label>
                     Max: <input 
                         className='w-20 text-black' 
                         type='number' 
                         placeholder='$$$' 
                         name='max' 
                         value={data.maxPrice} 
+                        onBlur={handleSubmit}
                         onChange={e => e.target.value > 0 ? setData('maxPrice', e.target.value) : setData('maxPrice', '')} />
                 </label>
                 <label>
