@@ -78,26 +78,29 @@ class AdminProductController extends Controller
     {
         $product ??= new Product();
 
-        $attributes = request()->validate([
+        $attributes = request();
+        $attributes['slug'] = Str::slug($attributes['name'], '-');
+        $validatedAttributes = $attributes->validate([
             'name' => ['required', Rule::unique('products', 'name')->ignore($product)],
+            'slug' => ['required', Rule::unique('products', 'slug')->ignore($product)],
             'manufacturer_id' => ['required', Rule::exists('manufacturers', 'id')],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'price' => ['required', 'numeric'],
             'image' => 'image',
             'description' => 'required',
         ]);
-        $attributes['slug'] = Str::slug($attributes['name'], '-');
-        if (isset($attributes['image'])) {
+        if (isset($validatedAttributes['image'])) {
             request()->file('image')->store('images');
         }
 
-        return $attributes;
+        return $validatedAttributes;
     }
 
     public function validateOther(String $type)
     {
         $attributes = request();
         $attributes['slug'] = Str::slug($attributes['name'], '-');
+
         return $attributes->validate([
             'name' => ['required', Rule::unique($type, 'name')],
             'slug' => ['required', Rule::unique($type, 'slug')],
