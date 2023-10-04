@@ -15,7 +15,7 @@ export default function Authenticated({ user, header, children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href={route('home')}>
                                     <ApplicationIcon className="block w-10 fill-current text-gray-800" />
                                 </Link>
                             </div>
