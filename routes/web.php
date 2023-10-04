@@ -13,6 +13,9 @@ Route::get('/', function () {
         'categories' => Category::all()
     ]);
 })->name('home');
+Route::get('/home', function () {
+    return redirect(route('home'));
+});
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
