@@ -20,6 +20,10 @@ Route::get('/home', function () {
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
 
+Route::get('/cart', function () {
+    return Inertia::render('Cart');
+})->name('cart');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

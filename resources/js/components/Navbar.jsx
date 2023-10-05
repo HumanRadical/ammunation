@@ -46,6 +46,11 @@ export default function Navbar({ auth }) {
                         </Link>
                     </>
                 )}
+                <Link
+                    href={route('cart')}
+                >
+                    <img className='h-7' src="/images/cart.svg" alt="Cart" />
+                </Link>
             </div>
         </nav>
     )
