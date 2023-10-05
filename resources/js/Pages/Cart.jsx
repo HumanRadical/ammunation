@@ -3,7 +3,7 @@ import CartCard from '@/components/CartCard';
 
 export default function Cart({ auth, products }) {
     const cartCards = products.map(product => {
-        return <CartCard product={product} />
+        return <CartCard product={product} key={`cartitem${product.id}`} />
     })
 
     return (
