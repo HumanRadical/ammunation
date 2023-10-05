@@ -144,6 +144,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                 id='price' 
                 value={data.price}
                 onChange={e => setData('price', e.target.value)}
+                onWheel={e => e.target.blur()}
                 required
             />
             {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
