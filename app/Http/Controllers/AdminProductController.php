@@ -90,7 +90,7 @@ class AdminProductController extends Controller
             'description' => 'required',
         ]);
         if (isset($validatedAttributes['image'])) {
-            request()->file('image')->store('images');
+            $validatedAttributes['image'] = request()->file('image')->store('images');
         }
 
         return $validatedAttributes;
