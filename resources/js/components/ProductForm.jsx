@@ -83,15 +83,17 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
         while(n--){
             u8arr[n] = bstr.charCodeAt(n);
         }
-        return new File([u8arr], 'image.jpeg', {type:mime});
+        return new File([u8arr], 'image.png', {type:mime});
     }
 
     const handleImageUpload = event => {
+        console.log(event.target.files[0])
         setUncroppedImageUrl(URL.createObjectURL(event.target.files[0]))
         setIsCropping(true)
     }
     const saveCroppedImage = (croppedImageData) => {
         const croppedImage = dataURLtoFile(croppedImageData)
+        console.log(croppedImage)
         setData('image', croppedImage)
         setCurrentImageUrl(URL.createObjectURL(croppedImage))
     }
