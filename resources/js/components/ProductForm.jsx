@@ -157,7 +157,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     type='file' 
                     id='image' 
                     accept='image/*' 
-                    fileName={data.image}
+                    filename={data.image}
                     onChange={e => setData('image', e.target.files[0])}
                 />
                 { image && <img className='w-28 border border-black' src={'/storage/' + image} /> }
@@ -168,9 +168,10 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                 className='border-gray-300 rounded-md mt-1' 
                 id='description' 
                 rows='10'
+                value={data.description}
                 onChange={e => setData('description', e.target.value)}
                 required
-            >{data.description}</textarea>
+            />
             {errors.description && <p className='text-red-500 mt-1'>{errors.description}</p>}
             <button 
                 className='bg-blue-500 hover:bg-blue-600 transition max-w-min px-12 py-3 mt-10 mx-auto rounded-xl text-white text-xl tracking-wide'

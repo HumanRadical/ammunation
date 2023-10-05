@@ -4,8 +4,12 @@ import { Head, useForm } from '@inertiajs/react';
 
 export default function Create({ auth, errors, manufacturers, categories }) {
     const { data, setData, post, processing } = useForm({
+        name: '',
         manufacturer_id: manufacturers[0].id,
         category_id: categories[0].id,
+        price: '',
+        image: '',
+        description: ''
     })
 
     const handleSubmit = (event) => {
