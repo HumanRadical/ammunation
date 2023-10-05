@@ -1,5 +1,6 @@
 import { router } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
+import ImageCropper from './ImageCropper'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
     const [currentImageUrl, setCurrentImageUrl] = useState(image ? `/storage/${image}` : undefined)
@@ -78,115 +79,118 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
     }
 
     return (
-        <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
-            <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
-            <input 
-                className='border-gray-300 rounded-md mt-1' 
-                type='text'
-                id='name' 
-                value={data.name}
-                onChange={e => setData('name', e.target.value)}
-                required
-            />
-            {errors.name && <p className='text-red-500 mt-1'>{errors.name}</p>}
-            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='manufacturer'>MANUFACTURER</label>
-            {
-                newManufacturer
-                ? (
-                    <div className='flex w-full mt-1'>
-                        <input 
-                            className='border-gray-300 rounded-md flex-grow' 
-                            type='text' 
-                            value={newManufacturerName}
-                            onChange={e => setNewManufacturerName(e.target.value)}
+        <>
+            <ImageCropper />
+            <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
+                <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
+                <input 
+                    className='border-gray-300 rounded-md mt-1' 
+                    type='text'
+                    id='name' 
+                    value={data.name}
+                    onChange={e => setData('name', e.target.value)}
+                    required
+                />
+                {errors.name && <p className='text-red-500 mt-1'>{errors.name}</p>}
+                <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='manufacturer'>MANUFACTURER</label>
+                {
+                    newManufacturer
+                    ? (
+                        <div className='flex w-full mt-1'>
+                            <input 
+                                className='border-gray-300 rounded-md flex-grow' 
+                                type='text' 
+                                value={newManufacturerName}
+                                onChange={e => setNewManufacturerName(e.target.value)}
+                                id='manufacturer' 
+                                autoFocus></input>
+                            <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewManufacturer}>SAVE</button>
+                            <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewManufacturer(false)}>CANCEL</button>
+                        </div>
+                    ) : (
+                        <select 
+                            className='border-gray-300 rounded-md mt-1'
                             id='manufacturer' 
-                            autoFocus></input>
-                        <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewManufacturer}>SAVE</button>
-                        <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewManufacturer(false)}>CANCEL</button>
-                    </div>
-                ) : (
-                    <select 
-                        className='border-gray-300 rounded-md mt-1'
-                        id='manufacturer' 
-                        value={data.manufacturer_id}
-                        onChange={handleManufacturerChange}
-                    > 
-                        {manufacturerOptions}
-                        <option value='new'>New Manufacturer...</option>
-                    </select>
-                )
-            }
-            {errors.manufacturer_id && <p className='text-red-500 mt-1'>{errors.manufacturer_id}</p>}
-            {/* {manufacturerErrors && <p className='text-red-500 mt-1'>Invalid manufacturer name.</p>} */}
-            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
-            {
-                newCategory
-                ? (
-                    <div className='flex w-full mt-1'>
-                        <input 
-                            className='border-gray-300 rounded-md flex-grow' 
-                            type='text' 
-                            value={newCategoryName}
-                            onChange={e => setNewCategoryName(e.target.value)}
+                            value={data.manufacturer_id}
+                            onChange={handleManufacturerChange}
+                        > 
+                            {manufacturerOptions}
+                            <option value='new'>New Manufacturer...</option>
+                        </select>
+                    )
+                }
+                {errors.manufacturer_id && <p className='text-red-500 mt-1'>{errors.manufacturer_id}</p>}
+                {/* {manufacturerErrors && <p className='text-red-500 mt-1'>Invalid manufacturer name.</p>} */}
+                <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
+                {
+                    newCategory
+                    ? (
+                        <div className='flex w-full mt-1'>
+                            <input 
+                                className='border-gray-300 rounded-md flex-grow' 
+                                type='text' 
+                                value={newCategoryName}
+                                onChange={e => setNewCategoryName(e.target.value)}
+                                id='category' 
+                                autoFocus></input>
+                            <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewCategory}>SAVE</button>
+                            <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewCategory(false)}>CANCEL</button>
+                        </div>
+                    ) : (
+                        <select 
+                            className='border-gray-300 rounded-md mt-1'
                             id='category' 
-                            autoFocus></input>
-                        <button className='bg-blue-500 hover:bg-blue-600 transition text-white rounded-md px-8' onClick={saveNewCategory}>SAVE</button>
-                        <button className='bg-red-500 hover:bg-red-600 transition text-white rounded-md px-8' onClick={() => setNewCategory(false)}>CANCEL</button>
+                            value={data.category_id}
+                            onChange={handleCategoryChange}
+                        > 
+                            {categoryOptions}
+                            <option value='new'>New Category...</option>
+                        </select>
+                    )
+                }
+                {errors.category_id && <p className='text-red-500 mt-1'>{errors.category_id}</p>}
+                {/* {categoryErrors && <p className='text-red-500 mt-1'>Invalid category name.</p>} */}
+                <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
+                <input 
+                    className='border-gray-300 rounded-md mt-1' 
+                    type='number'
+                    id='price' 
+                    value={data.price}
+                    onChange={e => setData('price', e.target.value)}
+                    onWheel={e => e.target.blur()}
+                    required
+                />
+                {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
+                <div className='flex justify-between'>
+                    <div className='flex flex-col'>
+                        <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
+                        <input 
+                            className='mt-1' 
+                            type='file' 
+                            id='image' 
+                            accept='image/*' 
+                            filename={data.image}
+                            onChange={handleImageUpload}
+                        />
                     </div>
-                ) : (
-                    <select 
-                        className='border-gray-300 rounded-md mt-1'
-                        id='category' 
-                        value={data.category_id}
-                        onChange={handleCategoryChange}
-                    > 
-                        {categoryOptions}
-                        <option value='new'>New Category...</option>
-                    </select>
-                )
-            }
-            {errors.category_id && <p className='text-red-500 mt-1'>{errors.category_id}</p>}
-            {/* {categoryErrors && <p className='text-red-500 mt-1'>Invalid category name.</p>} */}
-            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
-            <input 
-                className='border-gray-300 rounded-md mt-1' 
-                type='number'
-                id='price' 
-                value={data.price}
-                onChange={e => setData('price', e.target.value)}
-                onWheel={e => e.target.blur()}
-                required
-            />
-            {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
-            <div className='flex justify-between'>
-                <div className='flex flex-col'>
-                    <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
-                    <input 
-                        className='mt-1' 
-                        type='file' 
-                        id='image' 
-                        accept='image/*' 
-                        filename={data.image}
-                        onChange={handleImageUpload}
-                    />
+                    { currentImageUrl && <img className='w-28 border border-black' src={currentImageUrl} /> }
                 </div>
-                { currentImageUrl && <img className='w-28 border border-black' src={currentImageUrl} /> }
-            </div>
-            {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
-            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>
-            <textarea 
-                className='border-gray-300 rounded-md mt-1' 
-                id='description' 
-                rows='10'
-                value={data.description}
-                onChange={e => setData('description', e.target.value)}
-                required
-            />
-            {errors.description && <p className='text-red-500 mt-1'>{errors.description}</p>}
-            <button 
-                className='bg-blue-500 hover:bg-blue-600 transition max-w-min px-12 py-3 mt-10 mx-auto rounded-xl text-white text-xl tracking-wide'
-                disabled={processing}
-            >SUBMIT</button>
-        </form>
+                {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
+                <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>
+                <textarea 
+                    className='border-gray-300 rounded-md mt-1' 
+                    id='description' 
+                    rows='10'
+                    value={data.description}
+                    onChange={e => setData('description', e.target.value)}
+                    required
+                />
+                {errors.description && <p className='text-red-500 mt-1'>{errors.description}</p>}
+                <button 
+                    className='bg-blue-500 hover:bg-blue-600 transition max-w-min px-12 py-3 mt-10 mx-auto rounded-xl text-white text-xl tracking-wide'
+                    disabled={processing}
+                >SUBMIT</button>
+            </form>
+        </>
     )
 }
