@@ -56,7 +56,7 @@ export default function ImageCropper ({ imageUrl, setIsCropping, saveCroppedImag
             </div>
             <div className='bg-gray-300 flex flex-col gap-8 py-8'>
                 <input
-                    className='w-1/2 mx-auto appearance-none'
+                    className='w-2/5 mx-auto appearance-none'
                     type="range"
                     value={zoom}
                     min={1}
