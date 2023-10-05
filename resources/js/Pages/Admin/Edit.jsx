@@ -3,7 +3,8 @@ import ProductForm from '@/components/ProductForm';
 import { Head, useForm } from '@inertiajs/react';
 
 export default function Edit({ auth, errors, product, manufacturers, categories }) {
-    const { data, setData, patch, processing } = useForm({
+    const { data, setData, post, processing } = useForm({
+        _method: 'patch',
         name: product.name,
         manufacturer_id: product.manufacturer.id,
         category_id: product.category.id,
@@ -13,7 +14,7 @@ export default function Edit({ auth, errors, product, manufacturers, categories 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        patch(`/admin/products/${product.slug}`, { preserveState: true })
+        post(`/admin/products/${product.slug}`, { preserveState: true })
     }
 
     return (
