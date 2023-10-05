@@ -2,6 +2,8 @@ import { router } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
+    const [currentImageUrl, setCurrentImageUrl] = useState('/storage/' + image)
+
     const [newManufacturer, setNewManufacturer] = useState(false)
     const [newCategory, setNewCategory] = useState(false)
 
@@ -68,6 +70,12 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
     useEffect(() => {
         setData('category_id', categories[categories.length - 1].id)
     }, [categories])
+
+    const handleImageUpload = event => {
+        const image = event.target.files[0]
+        setData('image', image)
+        setCurrentImageUrl(URL.createObjectURL(image))
+    }
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
@@ -150,17 +158,19 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                 required
             />
             {errors.price && <p className='text-red-500 mt-1'>{errors.price}</p>}
-            <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
             <div className='flex justify-between'>
-                <input 
-                    className='mt-1' 
-                    type='file' 
-                    id='image' 
-                    accept='image/*' 
-                    filename={data.image}
-                    onChange={e => setData('image', e.target.files[0])}
-                />
-                { image && <img className='w-28 border border-black' src={'/storage/' + image} /> }
+                <div className='flex flex-col'>
+                    <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='image'>IMAGE</label>
+                    <input 
+                        className='mt-1' 
+                        type='file' 
+                        id='image' 
+                        accept='image/*' 
+                        filename={data.image}
+                        onChange={handleImageUpload}
+                    />
+                </div>
+                { currentImageUrl && <img className='w-28 border border-black' src={currentImageUrl} /> }
             </div>
             {errors.image && <p className='text-red-500 mt-1'>{errors.image}</p>}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='description'>DESCRIPTION</label>
