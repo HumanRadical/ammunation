@@ -80,7 +80,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
 
     return (
         <>
-            <ImageCropper />
+            <ImageCropper imageUrl={currentImageUrl} setImageUrl={setCurrentImageUrl} />
             <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
                 <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
                 <input 
