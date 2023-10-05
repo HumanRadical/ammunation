@@ -14,7 +14,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 Route::get('/home', function () {
-    return redirect(route('home'));
+    return Inertia::location(route('home'));
 });
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
