@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react'
 import ImageCropper from './ImageCropper'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
-    const [currentImageUrl, setCurrentImageUrl] = useState(image ? `/storage/${image}` : undefined)
-
     const [newManufacturer, setNewManufacturer] = useState(false)
     const [newCategory, setNewCategory] = useState(false)
-
+    
     const [newManufacturerName, setNewManufacturerName] = useState('')
     const [newCategoryName, setNewCategoryName] = useState('')
+
+    const [uncroppedImageUrl, setUncroppedImageUrl] = useState(null)
+    const [currentImageUrl, setCurrentImageUrl] = useState(image ? `/storage/${image}` : undefined)
+    const [isCropping, setIsCropping] = useState(false)
 
     // WIP
     // ===================================================================
@@ -72,15 +74,31 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
         setData('category_id', categories[categories.length - 1].id)
     }, [categories])
 
+    const dataURLtoFile = (dataUrl) => {
+        let arr = dataUrl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[arr.length - 1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], 'image.jpeg', {type:mime});
+    }
+
     const handleImageUpload = event => {
-        const image = event.target.files[0]
-        setData('image', image)
-        setCurrentImageUrl(URL.createObjectURL(image))
+        setUncroppedImageUrl(URL.createObjectURL(event.target.files[0]))
+        setIsCropping(true)
+    }
+    const saveCroppedImage = (croppedImageData) => {
+        const croppedImage = dataURLtoFile(croppedImageData)
+        setData('image', croppedImage)
+        setCurrentImageUrl(URL.createObjectURL(croppedImage))
     }
 
     return (
         <>
-            <ImageCropper imageUrl={currentImageUrl} setImageUrl={setCurrentImageUrl} />
+            { isCropping && <ImageCropper imageUrl={uncroppedImageUrl} setIsCropping={setIsCropping} saveCroppedImage={saveCroppedImage} /> }
             <form onSubmit={handleSubmit} className='flex flex-col mx-auto max-w-3xl'>
                 <label className='text-gray-700 text-xl tracking-wide' htmlFor='name'>NAME</label>
                 <input 
@@ -171,6 +189,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                             accept='image/*' 
                             filename={data.image}
                             onChange={handleImageUpload}
+                            onClick={e => e.target.value = null}
                         />
                     </div>
                     { currentImageUrl && <img className='w-28 border border-black' src={currentImageUrl} /> }

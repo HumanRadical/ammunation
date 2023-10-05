@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Cropper from 'react-easy-crop'
 
-export default function ImageCropper ({ imageUrl, setImageUrl }) {
+export default function ImageCropper ({ imageUrl, setIsCropping, saveCroppedImage }) {
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
     const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -11,7 +11,7 @@ export default function ImageCropper ({ imageUrl, setImageUrl }) {
         setCroppedAreaPixels(croppedAreaPixels)
     }
 
-    const saveCroppedImage = async (imageUrl, pixelCrop) => {
+    const cropImage = async (imageUrl, pixelCrop) => {
         const image = new Image()
         image.src = imageUrl
 
@@ -36,7 +36,8 @@ export default function ImageCropper ({ imageUrl, setImageUrl }) {
                 pixelCrop.height
             )
 
-            setImageUrl(canvas.toDataURL())
+            saveCroppedImage(canvas.toDataURL())
+            setIsCropping(false)
         }
     }
 
@@ -66,10 +67,11 @@ export default function ImageCropper ({ imageUrl, setImageUrl }) {
                 <div className='text-center space-x-12'>
                     <button 
                         className='px-12 py-3 text-white text-3xl rounded-md bg-blue-500 hover:bg-blue-600 transition uppercase'
-                        onClick={() => saveCroppedImage(imageUrl, croppedAreaPixels)}
+                        onClick={() => cropImage(imageUrl, croppedAreaPixels)}
                     >Save</button>
                     <button 
                         className='px-12 py-3 text-white text-3xl rounded-md bg-red-500 hover:bg-red-600 transition uppercase'
+                        onClick={() => setIsCropping(false)}
                     >Cancel</button>
                 </div>
             </div>
