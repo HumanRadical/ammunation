@@ -2,7 +2,7 @@ import { router } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
 export default function ProductForm ({ image, manufacturers, categories, data, setData, handleSubmit, errors, processing }) {
-    const [currentImageUrl, setCurrentImageUrl] = useState('/storage/' + image)
+    const [currentImageUrl, setCurrentImageUrl] = useState(image ? `/storage/${image}` : undefined)
 
     const [newManufacturer, setNewManufacturer] = useState(false)
     const [newCategory, setNewCategory] = useState(false)
