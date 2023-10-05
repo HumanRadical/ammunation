@@ -108,6 +108,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     </select>
                 )
             }
+            {errors.manufacturer_id && <p className='text-red-500 mt-1'>{errors.manufacturer_id}</p>}
             {/* {manufacturerErrors && <p className='text-red-500 mt-1'>Invalid manufacturer name.</p>} */}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='category'>CATEGORY</label>
             {
@@ -136,6 +137,7 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     </select>
                 )
             }
+            {errors.category_id && <p className='text-red-500 mt-1'>{errors.category_id}</p>}
             {/* {categoryErrors && <p className='text-red-500 mt-1'>Invalid category name.</p>} */}
             <label className='text-gray-700 text-xl tracking-wide mt-8' htmlFor='price'>PRICE ($)</label>
             <input 

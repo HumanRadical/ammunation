@@ -3,8 +3,10 @@ import ProductForm from '@/components/ProductForm';
 import { Head, useForm } from '@inertiajs/react';
 
 export default function Create({ auth, errors, manufacturers, categories }) {
-    debugger
-    const { data, setData, post, processing } = useForm()
+    const { data, setData, post, processing } = useForm({
+        manufacturer_id: manufacturers[0].id,
+        category_id: categories[0].id,
+    })
 
     const handleSubmit = (event) => {
         event.preventDefault();
