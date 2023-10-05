@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,7 +22,9 @@ Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
 
 Route::get('/cart', function () {
-    return Inertia::render('Cart');
+    return Inertia::render('Cart', [
+        'products' => Product::all()
+    ]);
 })->name('cart');
 
 Route::get('/dashboard', function () {
