@@ -3,7 +3,7 @@ import StarBar from './StarBar';
 
 export default function ProductCard({ product }) {
     return (
-        <Link href={route('shop.show', { product: product })} className='border-2 border-black rounded-xl p-5 bg-gray-400 text-black'>
+        <Link href={route('shop.show', { product: product })} className='border-2 border-black rounded-xl p-5 bg-gray-400 hover:bg-gray-500 transition text-black'>
             <img 
                 className='border-2 border-black w-full bg-gray-300' 
                 src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'}
