@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,11 +21,7 @@ Route::get('/home', function () {
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
 
-Route::get('/cart', function () {
-    return Inertia::render('Cart', [
-        'products' => Product::all()
-    ]);
-})->name('cart');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

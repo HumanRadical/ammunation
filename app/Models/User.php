@@ -47,6 +47,11 @@ class User extends Authenticatable
         'is_admin',
     ];
 
+    public function cart()
+    {
+        $this->hasOne(Cart::class);
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->email === 'easton.meth@gmail.com';

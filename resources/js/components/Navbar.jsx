@@ -23,12 +23,19 @@ export default function Navbar({ auth }) {
             </Link>
             <div className='flex justify-end col-end-9 my-auto space-x-4'>
                 {auth.user ? (
-                    <Link
-                        href={route('dashboard')}
-                        className="font-semibold text-xl text-white"
-                    >
-                        Dashboard
-                    </Link>
+                    <>
+                        <Link
+                            href={route('dashboard')}
+                            className="font-semibold text-xl text-white"
+                        >
+                            Dashboard
+                        </Link>
+                        <Link
+                            href={route('cart.show', { user: auth.user })}
+                        >
+                            <img className='h-7' src="/images/cart.svg" alt="Cart" />
+                        </Link>
+                    </>
                 ) : (
                     <>
                         <Link
@@ -46,11 +53,6 @@ export default function Navbar({ auth }) {
                         </Link>
                     </>
                 )}
-                <Link
-                    href={route('cart')}
-                >
-                    <img className='h-7' src="/images/cart.svg" alt="Cart" />
-                </Link>
             </div>
         </nav>
     )
