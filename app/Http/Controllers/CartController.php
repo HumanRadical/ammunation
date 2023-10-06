@@ -21,7 +21,12 @@ class CartController extends Controller
     public function add(Product $product)
     {
         $cart = $this->validateCart();
-        $cart->products()->attach($product->id);
+        $selectedProduct = $cart->products->where('id', $product->id)->first();
+        if ($selectedProduct) {
+            $selectedProduct->pivot->increment('quantity');
+        } else {
+            $cart->products()->attach($product->id);
+        }
 
         return back();
     }
