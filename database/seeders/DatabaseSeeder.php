@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Cart;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         Product::query()->delete();
         Review::query()->delete();
         User::query()->delete();
+        Cart::query()->delete();
 
         Manufacturer::factory(5)->create();
         Category::factory(8)->create();
