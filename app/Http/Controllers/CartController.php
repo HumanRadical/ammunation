@@ -23,9 +23,9 @@ class CartController extends Controller
         $cart = $this->validateCart();
         $selectedProduct = $cart->products->where('id', $product->id)->first();
         if ($selectedProduct) {
-            $selectedProduct->pivot->increment('quantity');
+            $selectedProduct->pivot->increment('quantity', request()->quantity);
         } else {
-            $cart->products()->attach($product->id);
+            $cart->products()->attach($product->id, ['quantity' => request()->quantity]);
         }
 
         return back();

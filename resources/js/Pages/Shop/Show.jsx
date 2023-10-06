@@ -6,10 +6,11 @@ import { Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Show({ auth, product }) {
+    const [quantity, setQuantity] = useState(1)
     const [added, setAdded] = useState(false)
 
     const addToCart = () => {
-        router.post(`/cart/${product.slug}`)
+        router.post(`/cart/${product.slug}`, { quantity: quantity })
         setAdded(true)
         setTimeout(() => {
             setAdded(false)
@@ -44,7 +45,17 @@ export default function Show({ auth, product }) {
                                 </div>
                                 : <h3 className='text-xl'>No reviews yet.</h3>
                             }
-                        <h3 className='text-green-400 text-3xl font-medium'>${product.price.toFixed(2)} <span className='text-lg text-black font-normal'>+ tax</span></h3>
+                        <h3 className='text-green-400 text-3xl font-medium'>${(product.price * quantity).toFixed(2)} <span className='text-lg text-black font-normal'>+ tax</span></h3>
+                        <div className='flex my-auto w-24 h-8 mt-2'>
+                            <button className='bg-gray-200 hover:bg-gray-300 w-20' onClick={() => quantity > 1 && setQuantity(oldQuant => oldQuant - 1)}>-</button>
+                            <input 
+                                className='text-lg w-full h-full border-none arrow-none px-0 text-center' 
+                                type="number" 
+                                min={1}
+                                value={quantity} 
+                                onChange={e => e.target.value > 0 && setQuantity(Math.round(e.target.value))} />
+                            <button className='bg-gray-200 hover:bg-gray-300 w-20' onClick={() => setQuantity(oldQuant => oldQuant + 1)}>+</button>
+                        </div>
                     </div>
                     {
                         added 
