@@ -36,8 +36,9 @@ export default function CartCard({ product }) {
                     className='text-lg w-full h-full border-none arrow-none px-0 text-center' 
                     type="number" 
                     min='1'
+                    step='1'
                     value={quantity} 
-                    onChange={e => setQuantity(e.target.value)} />
+                    onChange={e => e.target.value > 0 && setQuantity(Math.round(e.target.value))} />
                 <button className='bg-gray-200 hover:bg-gray-300 w-20' onClick={() => setQuantity(oldQuant => oldQuant + 1)}>+</button>
             </td>
             <td className='my-auto'>
