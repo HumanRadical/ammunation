@@ -86,7 +86,7 @@ class AdminProductController extends Controller
             'manufacturer_id' => ['required', Rule::exists('manufacturers', 'id')],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'price' => ['required', 'numeric'],
-            'image' => 'image',
+            'image' => ['image', 'dimensions:ratio=1'],
             'description' => 'required',
         ]);
         if (isset($validatedAttributes['image'])) {
