@@ -2,9 +2,9 @@ import MainLayout from '@/Layouts/MainLayout';
 import CategoryCard from '@/components/CategoryCard';
 import { Link } from '@inertiajs/react';
 
-export default function Home({ auth, categories }) {
+export default function Home({ auth, cartCount, categories }) {
     return (
-        <MainLayout auth={auth} head='Home'>
+        <MainLayout auth={auth} cartCount={cartCount} head='Home'>
             <div className='grid grid-cols-9 grid-rows-6'>
                 <img className='w-full col-span-full row-span-full' src='/images/ammunation_background2.png' />
                 <button className='text-white text-2xl font-bold h-14 bg-green-500 hover:bg-green-600 transition rounded-lg col-start-5 row-start-6'>

@@ -2,7 +2,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import CartCard from '@/components/CartCard';
 import { useEffect, useState } from 'react';
 
-export default function Cart({ auth, products }) {
+export default function Cart({ auth, cartCount, products }) {
     const [subtotal, setSubtotal] = useState(products.reduce((total, product) => total + product.price * product.pivot.quantity, 0))
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function Cart({ auth, products }) {
     }, [products])
 
     return (
-        <MainLayout auth={auth} head='Cart'>
+        <MainLayout auth={auth} cartCount={cartCount} head='Cart'>
             <div className='py-10 flex justify-center mx-auto'>
                 <section className='rounded-lg border-2 border-black py-8 px-12 space-y-6 bg-gray-400 w-1/2 h-fit'>
                     {

@@ -2,9 +2,9 @@ import MainLayout from '@/Layouts/MainLayout';
 import FilterBar from '@/components/FilterBar';
 import ProductCard from '@/components/ProductCard';
 
-export default function Index({ auth, products, manufacturers, categories, query }) {
+export default function Index({ auth, cartCount, products, manufacturers, categories, query }) {
     return (
-        <MainLayout auth={auth} head='Shop'>
+        <MainLayout auth={auth} cartCount={cartCount} head='Shop'>
             <FilterBar manufacturers={manufacturers} categories={categories} query={query} />
             {
                 products

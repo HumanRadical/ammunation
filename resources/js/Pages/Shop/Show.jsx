@@ -5,7 +5,7 @@ import StarBar from '@/components/StarBar';
 import { Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
-export default function Show({ auth, product }) {
+export default function Show({ auth, cartCount, product }) {
     const [quantity, setQuantity] = useState(1)
     const [added, setAdded] = useState(false)
 
@@ -18,7 +18,7 @@ export default function Show({ auth, product }) {
     }
 
     return (
-        <MainLayout auth={auth} head={product.name}>
+        <MainLayout auth={auth} cartCount={cartCount} head={product.name}>
             <div className='grid grid-cols-4 gap-8 p-12 auto-rows-auto'>
                 <button onClick={() => history.back()} className='max-h-10 flex content-center'>
                     <img className='w-10 mr-2' src="/images/pistol_icon.png" alt="Back"/>

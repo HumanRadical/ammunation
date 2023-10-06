@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import ApplicationLogo from './ApplicationLogo';
 
-export default function Navbar({ auth }) {
+export default function Navbar({ auth, cartCount }) {
     return (
         <nav className="p-6 bg-red-700 w-full grid grid-cols-8">
             <div className='my-auto space-x-4'>
@@ -50,8 +50,14 @@ export default function Navbar({ auth }) {
                 )}
                 <Link
                     href={route('cart.show')}
+                    className='relative'
                 >
-                    <img className='h-7' src="/images/cart.svg" alt="Cart" />
+                    <img className='h-8' src="/images/cart.svg" alt="Cart" />
+                    {
+                        cartCount
+                        ? <span class="absolute bg-white text-red-600 px-2 py-1 text-xs font-bold rounded-full -top-2.5 -right-3">{cartCount}</span>
+                        : ''
+                    }
                 </Link>
             </div>
         </nav>
