@@ -3,8 +3,16 @@ import ProductReview from '@/components/ProductReview';
 import ReviewForm from '@/components/ReviewForm';
 import StarBar from '@/components/StarBar';
 import { Link, router } from '@inertiajs/react';
+import { useState } from 'react';
 
 export default function Show({ auth, product }) {
+    const [added, setAdded] = useState(false)
+
+    const addToCart = () => {
+        router.post(`/cart/${product.slug}`)
+        setAdded(true)
+    }
+
     return (
         <MainLayout auth={auth} head={product.name}>
             <div className='grid grid-cols-4 gap-8 p-12 auto-rows-auto'>
@@ -35,11 +43,17 @@ export default function Show({ auth, product }) {
                             }
                         <h3 className='text-green-400 text-3xl font-medium'>${product.price.toFixed(2)} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>
-                    <button 
-                        onClick={() => router.post(`/cart/${product.slug}`)}
-                        className='bg-orange-400 hover:bg-orange-500 transition h-12 py-2 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
-                        >Add to Cart
-                    </button>
+                    {
+                        added 
+                        ? <button
+                            className='bg-orange-300 h-12 py-2 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
+                            disabled
+                        >Added &#10003;</button>
+                        : <button 
+                            className='bg-orange-400 hover:bg-orange-500 transition h-12 py-2 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
+                            onClick={addToCart}
+                        >Add to Cart</button>
+                    }
                 </div>
                 <div className='col-start-2 col-span-2 space-y-6'>
                     <div className='space-y-2'>
