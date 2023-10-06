@@ -9,7 +9,7 @@ export default function Cart({ auth, products }) {
                     {
                         products.length
                         ? <table className='px-4'>
-                            <th className='uppercase grid grid-cols-6 text-left'>
+                            <th className='uppercase grid grid-cols-6 gap-2 text-left'>
                                 <td>Product</td>
                                 <td></td>
                                 <td>Price</td>
