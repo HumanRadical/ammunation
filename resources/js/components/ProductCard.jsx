@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
             <Link href={route('shop.index', { category: product.category.slug })}>
                 <h4 className='text-white mt-1 hover:underline'>{product.category.name}</h4>
             </Link>
-            <h5 className='text-green-400'>${product.price}</h5>
+            <h5 className='text-green-400'>${product.price.toFixed(2)}</h5>
         </Link>
     );
 }

@@ -18,13 +18,13 @@ export default function CartCard({ product }) {
                 </Link>
             </td>
             <td className='my-auto'>
-                <h5 className='text-green-400 text-xl'>${product.price}</h5>
+                <h5 className='text-green-400 text-xl'>${product.price.toFixed(2)}</h5>
             </td>
             <td className='flex gap-2 my-auto'>
                 <input className='h-8 w-12 text-lg' type="number" value={1} />
             </td>
             <td className='my-auto'>
-                <h5 className='text-green-400 text-xl'>${product.price}</h5>
+                <h5 className='text-green-400 text-xl'>${product.price.toFixed(2)}</h5>
             </td>
             <td className='my-auto'>
                 <h5 className='text-lg text-blue-600 hover:underline cursor-pointer'>Remove</h5>

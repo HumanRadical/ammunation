@@ -21,7 +21,7 @@ export default function ProductTableRow({ product }) {
                 <span>{truncateString(product.category.name, 12)}</span>
             </td>
             <td className="text-left my-auto text-green-500">
-                <span>${product.price}</span>
+                <span>${product.price.toFixed(2)}</span>
             </td>
             <td className="text-center my-auto">
                 <span className="bg-blue-200 text-blue-500 py-1 px-3 rounded-full text-sm">Available</span>

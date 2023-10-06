@@ -30,10 +30,10 @@ export default function Show({ auth, product }) {
                         </Link>
                         <h2 className='font-bold text-4xl'>{product.name}</h2>
                         <h3 className='flex text-xl mt-2'>
-                            { product.reviews.length ? `${Math.round(product.stars * 100) / 100} / 5 stars` : 'No reviews yet.' } 
+                            { product.reviews.length ? `${product.stars.toFixed(2)} / 5 stars` : 'No reviews yet.' } 
                             { product.reviews.length ? <StarBar className='h-6 ml-2' stars={product.stars} starBarKey={'product'} /> : '' }
                         </h3>
-                        <h3 className='text-green-400 text-3xl font-bold mt-1'>${product.price} <span className='text-lg text-black font-normal'>+ tax</span></h3>
+                        <h3 className='text-green-400 text-3xl font-bold mt-1'>${product.price.toFixed(2)} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>
                     <button 
                         className='bg-orange-400 hover:bg-orange-500 transition h-12 py-2 mt-10 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
