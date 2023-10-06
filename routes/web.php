@@ -23,6 +23,7 @@ Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('sh
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::post('/cart/{product:slug}', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/{product:slug}', [CartController::class, 'remove'])->name('cart.remove');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

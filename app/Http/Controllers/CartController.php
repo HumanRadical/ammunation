@@ -11,11 +11,8 @@ class CartController extends Controller
 {
     public function show()
     {
-        $session_id = Session::getId();
-        $cart = Cart::where('session_id', $session_id)->first();
-        if (!$cart) {
-            $cart = Cart::create(['session_id' => $session_id]);
-        }
+        $cart = $this->validateCart();
+
         return Inertia::render('Cart', [
             'products' => $cart->products
         ]);
@@ -23,13 +20,28 @@ class CartController extends Controller
 
     public function add(Product $product)
     {
+        $cart = $this->validateCart();
+        $cart->products()->attach($product->id);
+
+        return back();
+    }
+
+    public function remove(Product $product)
+    {
+        $cart = $this->validateCart();
+        $cart->products()->detach($product->id);
+
+        return back();
+    }
+
+    private function validateCart() 
+    {
         $session_id = Session::getId();
         $cart = Cart::where('session_id', $session_id)->first();
         if (!$cart) {
             $cart = Cart::create(['session_id' => $session_id]);
         }
-        $cart->products()->attach($product->id);
 
-        return back();
+        return $cart;
     }
 }

@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 export default function CartCard({ product }) {
     return (
@@ -31,7 +31,10 @@ export default function CartCard({ product }) {
                 <h5 className='text-green-400 text-xl font-medium'>${product.price.toFixed(2)}</h5>
             </td>
             <td className='my-auto'>
-                <h5 className='text-lg text-blue-600 hover:underline cursor-pointer'>Remove</h5>
+                <button 
+                    className='text-lg text-blue-600 hover:underline cursor-pointer'
+                    onClick={() => router.delete(`/cart/${product.slug}`)}
+                >Remove</button>
             </td>
         </tr>
     )
