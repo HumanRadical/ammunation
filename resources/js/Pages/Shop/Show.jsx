@@ -29,8 +29,7 @@ export default function Show({ auth, product }) {
                                 product.reviews.length 
                                 ? <div className='flex gap-2 text-xl'>
                                     <h3 className='my-auto'>{product.stars.toFixed(2)} / 5 stars</h3>
-                                    <StarBar className='h-6 my-auto' stars={product.stars} starBarKey={'product'} /> 
-                                    <h3 className='my-auto'>({product.reviews.length})</h3>
+                                    <StarBar className='h-6 my-auto' stars={product.stars} starBarKey={'product'} />
                                 </div>
                                 : <h3 className='text-xl'>No reviews yet.</h3>
                             }
@@ -47,7 +46,7 @@ export default function Show({ auth, product }) {
                         <p className='text-lg'>{product.description}</p>
                     </div>
                     <div className='space-y-2'>
-                        <h4 className='text-3xl font-bold'>Reviews:</h4>
+                        <h4 className='text-3xl font-bold'>Reviews <span className='font-medium'>({product.reviews.length})</span>:</h4>
                         <div className='space-y-3'>
                             <ReviewForm auth={auth} product={product} />
                             {
