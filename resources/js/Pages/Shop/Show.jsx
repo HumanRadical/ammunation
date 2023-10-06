@@ -2,7 +2,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import ProductReview from '@/components/ProductReview';
 import ReviewForm from '@/components/ReviewForm';
 import StarBar from '@/components/StarBar';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 export default function Show({ auth, product }) {
     return (
@@ -36,6 +36,7 @@ export default function Show({ auth, product }) {
                         <h3 className='text-green-400 text-3xl font-medium'>${product.price.toFixed(2)} <span className='text-lg text-black font-normal'>+ tax</span></h3>
                     </div>
                     <button 
+                        onClick={() => router.post(`/cart/${product.slug}`)}
                         className='bg-orange-400 hover:bg-orange-500 transition h-12 py-2 rounded-lg border-2 border-black text-lg font-bold w-full self-end'
                         >Add to Cart
                     </button>

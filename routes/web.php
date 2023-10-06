@@ -22,6 +22,7 @@ Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('shop.show');
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::post('/cart/{product:slug}', [CartController::class, 'add'])->name('cart.add');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

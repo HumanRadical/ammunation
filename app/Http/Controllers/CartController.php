@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Models\Cart;
-use App\Models\User;
+use App\Models\Product;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -21,10 +21,15 @@ class CartController extends Controller
         ]);
     }
 
-    public function add(User $user)
+    public function add(Product $product)
     {
-        if ($user->cart) {
-
+        $session_id = Session::getId();
+        $cart = Cart::where('session_id', $session_id)->first();
+        if (!$cart) {
+            $cart = Cart::create(['session_id' => $session_id]);
         }
+        $cart->products()->attach($product->id);
+
+        return back();
     }
 }
