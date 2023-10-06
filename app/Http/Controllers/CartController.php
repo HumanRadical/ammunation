@@ -26,6 +26,18 @@ class CartController extends Controller
         return back();
     }
 
+    public function update(Product $product)
+    {
+        $cart = $this->validateCart();
+        foreach ($cart->products as $cartProduct) {
+            if ($cartProduct->id === $product->id) {
+                $cartProduct->pivot->update(['quantity' => request()->quantity]);
+            }
+        }
+
+        return back();
+    }
+
     public function remove(Product $product)
     {
         $cart = $this->validateCart();

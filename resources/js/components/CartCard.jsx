@@ -5,7 +5,8 @@ export default function CartCard({ product }) {
     const [quantity, setQuantity] = useState(product.pivot.quantity)
 
     useEffect(() => {
-        console.log(quantity)
+        product.pivot.quantity = quantity
+        router.patch(`/cart/${product.slug}`, { quantity: quantity })
     }, [quantity])
 
     return (

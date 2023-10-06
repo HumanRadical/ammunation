@@ -23,6 +23,7 @@ Route::get('/shop/{product:slug}', [ProductController::class, 'show'])->name('sh
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::post('/cart/{product:slug}', [CartController::class, 'add'])->name('cart.add');
+Route::patch('/cart/{product:slug}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{product:slug}', [CartController::class, 'remove'])->name('cart.remove');
 
 Route::get('/dashboard', function () {
