@@ -30,11 +30,6 @@ export default function Navbar({ auth }) {
                         >
                             Dashboard
                         </Link>
-                        <Link
-                            href={route('cart.show', { user: auth.user })}
-                        >
-                            <img className='h-7' src="/images/cart.svg" alt="Cart" />
-                        </Link>
                     </>
                 ) : (
                     <>
@@ -53,6 +48,11 @@ export default function Navbar({ auth }) {
                         </Link>
                     </>
                 )}
+                <Link
+                    href={route('cart.show')}
+                >
+                    <img className='h-7' src="/images/cart.svg" alt="Cart" />
+                </Link>
             </div>
         </nav>
     )
