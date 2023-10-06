@@ -3,7 +3,7 @@ import CartCard from '@/components/CartCard';
 import { useEffect, useState } from 'react';
 
 export default function Cart({ auth, products }) {
-    const [subtotal, setSubtotal] = useState()
+    const [subtotal, setSubtotal] = useState(products.reduce((total, product) => total + product.price * product.pivot.quantity, 0))
 
     useEffect(() => {
         setSubtotal(
