@@ -7,7 +7,7 @@ export default function Cart({ auth, products }) {
             <div className='py-10 flex justify-center mx-auto'>
                 <section className='rounded-lg border-2 border-black py-8 px-12 space-y-6 bg-gray-400 max-w-4xl'>
                     {
-                        products
+                        products.length
                         ? <table className='px-4'>
                             <th className='uppercase grid grid-cols-6 text-left'>
                                 <td>Product</td>
@@ -25,7 +25,7 @@ export default function Cart({ auth, products }) {
                                 }
                             </tbody>
                         </table>
-                        : <p className='px-20 text-2xl'>Nothing in the cart.</p>
+                        : <p className='px-20 text-2xl'>Nothing in your cart.</p>
                     }
                     
                 </section>
