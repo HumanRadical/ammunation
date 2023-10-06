@@ -5,11 +5,11 @@ export default function Cart({ auth, products }) {
     return (
         <MainLayout auth={auth} head='Cart'>
             <div className='py-10 flex justify-center mx-auto'>
-                <section className='rounded-lg border-2 border-black py-8 px-12 space-y-6 bg-gray-400 max-w-4xl'>
+                <section className='rounded-lg border-2 border-black py-8 px-12 space-y-6 bg-gray-400 w-1/2 h-fit'>
                     {
                         products.length
-                        ? <table className='px-4'>
-                            <th className='uppercase grid grid-cols-6 gap-2 text-left'>
+                        ? <table className='px-4 w-full'>
+                            <th className='uppercase grid grid-cols-6 text-left'>
                                 <td>Product</td>
                                 <td></td>
                                 <td>Price</td>

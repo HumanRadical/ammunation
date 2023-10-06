@@ -10,7 +10,7 @@ export default function CartCard({ product }) {
     }, [quantity])
 
     return (
-        <tr className='border-t-2 py-5 text-black grid grid-cols-6 gap-2'>
+        <tr className='border-t-2 py-5 text-black grid grid-cols-6'>
             <td className='flex gap-3'>
                 <Link href={route('shop.show', { product: product })}>
                     <img 
