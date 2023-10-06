@@ -29,9 +29,12 @@ class CartController extends Controller
     public function update(Product $product)
     {
         $cart = $this->validateCart();
-        foreach ($cart->products as $cartProduct) {
-            if ($cartProduct->id === $product->id) {
-                $cartProduct->pivot->update(['quantity' => request()->quantity]);
+        if (request()->quantity <= 0) {
+            $cart->products()->detach($product->id);
+        } else {
+            $selectedProduct = $cart->products->where('id', $product->id)->first();
+            if ($selectedProduct) {
+                $selectedProduct->pivot->update(['quantity' => request()->quantity]);
             }
         }
 
