@@ -173,6 +173,8 @@ export default function ProductForm ({ image, manufacturers, categories, data, s
                     className='border-gray-300 rounded-md mt-1' 
                     type='number'
                     id='price' 
+                    min='0'
+                    step='0.01'
                     value={data.price}
                     onChange={e => setData('price', e.target.value)}
                     onWheel={e => e.target.blur()}
