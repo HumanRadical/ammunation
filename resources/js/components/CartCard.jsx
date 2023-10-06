@@ -1,6 +1,13 @@
 import { Link, router } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 
 export default function CartCard({ product }) {
+    const [quantity, setQuantity] = useState(product.pivot.quantity)
+
+    useEffect(() => {
+        console.log(quantity)
+    }, [quantity])
+
     return (
         <tr className='border-t-2 py-5 text-black grid grid-cols-6 gap-2'>
             <td className='flex gap-3'>
@@ -23,9 +30,14 @@ export default function CartCard({ product }) {
                 <h5 className='text-green-400 text-xl'>${product.price.toFixed(2)}</h5>
             </td>
             <td className='flex my-auto w-24 h-8'>
-                <button className='bg-gray-200 w-36'>-</button>
-                <input className='text-lg w-full h-full border-none arrow-none text-center' type="number" value={1} />
-                <button className='bg-gray-200 w-36'>+</button>
+                <button className='bg-gray-200 hover:bg-gray-300 w-20' onClick={() => setQuantity(oldQuant => oldQuant - 1)}>-</button>
+                <input 
+                    className='text-lg w-full h-full border-none arrow-none px-0 text-center' 
+                    type="number" 
+                    value={quantity} 
+                    onChange={e => setQuantity(e.target.value)} 
+                    min='0' />
+                <button className='bg-gray-200 hover:bg-gray-300 w-20' onClick={() => setQuantity(oldQuant => oldQuant + 1)}>+</button>
             </td>
             <td className='my-auto'>
                 <h5 className='text-green-400 text-xl font-medium'>${product.price.toFixed(2)}</h5>
