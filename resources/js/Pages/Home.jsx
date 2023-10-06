@@ -5,13 +5,13 @@ import { Link } from '@inertiajs/react';
 export default function Home({ auth, cartCount, categories }) {
     return (
         <MainLayout auth={auth} cartCount={cartCount} head='Home'>
-            <div className='grid grid-cols-9 grid-rows-6'>
-                <img className='w-full col-span-full row-span-full' src='/images/ammunation_background2.png' />
-                <button className='text-white text-2xl font-bold h-14 bg-green-500 hover:bg-green-600 transition rounded-lg col-start-5 row-start-6'>
-                    <Link href={route('shop.index')} className='w-full block'>
-                        Shop Now!
+            <div className='relative'>
+                <img className='w-full' src='/images/ammunation_background2.png' />
+                    <Link href={route('shop.index')}>
+                        <button className='text-white text-2xl font-bold py-3 mx-40 bg-green-500 hover:bg-green-600 transition rounded-lg absolute bottom-8 inset-x-1/3'>
+                            Shop Now!
+                        </button>
                     </Link>
-                </button>
             </div>
             {
                 categories
