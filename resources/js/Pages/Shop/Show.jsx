@@ -11,6 +11,9 @@ export default function Show({ auth, product }) {
     const addToCart = () => {
         router.post(`/cart/${product.slug}`)
         setAdded(true)
+        setTimeout(() => {
+            setAdded(false)
+        }, 3000)
     }
 
     return (
