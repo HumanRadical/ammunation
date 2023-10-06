@@ -3,10 +3,6 @@ import CategoryCard from '@/components/CategoryCard';
 import { Link } from '@inertiajs/react';
 
 export default function Home({ auth, categories }) {
-    const categoryCards = categories.map(category => {
-        return <CategoryCard category={category} key={category.id} />
-    })
-
     return (
         <MainLayout auth={auth} head='Home'>
             <div className='grid grid-cols-9 grid-rows-6'>
@@ -17,10 +13,19 @@ export default function Home({ auth, categories }) {
                     </Link>
                 </button>
             </div>
-            <h2 className='text-3xl text-center mt-8 mb-4'>Shop by Category:</h2>
-            <div className='w-1/2 mx-auto grid grid-cols-2 grid-rows-2 pb-8'>
-                {categoryCards}
-            </div>
+            {
+                categories
+                && <div className='w-1/2 mx-auto py-8 space-y-4'>
+                    <h2 className='text-3xl text-center'>Shop by Category:</h2>
+                    <div className='grid grid-cols-2 grid-rows-2'>
+                        {
+                            categories.map(category => {
+                                return <CategoryCard category={category} key={category.id} />
+                            })
+                        }
+                    </div>
+                </div>
+            }
         </MainLayout>
     );
 }
