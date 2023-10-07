@@ -26,7 +26,7 @@ export default function ReviewForm({ auth, product }) {
                 <div className='space-y-2'>
                     <h3 className='text-2xl font-bold'>Add a review:</h3>
                     <form className='space-y-3' onSubmit={handleSubmit}>
-                        <div className='flex'>
+                        <div className='flex flex-wrap'>
                             <img className='rounded-full w-10 h-10 my-auto' src='/images/user_icon.png' alt='User Icon' />
                             <ResponsiveStarBar className='h-7 my-auto ml-2' stars={data.stars} setData={setData} />
                             {errors.stars && <p className='text-red-500 w-full mt-1'>{errors.stars}</p>}
