@@ -8,7 +8,7 @@ export default function Home({ auth, cartCount, categories }) {
             <div className='relative'>
                 <img className='w-full' src='/images/ammunation_background2.png' />
                     <Link href={route('shop.index')}>
-                        <button className='text-white text-3xl font-bold py-3 mx-40 bg-green-500 hover:bg-green-600 transition rounded-lg absolute bottom-10 inset-x-1/3'>
+                        <button className='text-white text-3xl font-bold py-3 mx-44 bg-green-500 hover:bg-green-600 transition rounded-lg absolute bottom-10 inset-x-1/3'>
                             Shop Now!
                         </button>
                     </Link>
