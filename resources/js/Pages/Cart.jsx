@@ -1,5 +1,6 @@
 import MainLayout from '@/Layouts/MainLayout';
 import CartCard from '@/components/CartCard';
+import { Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 export default function Cart({ auth, cartCount, products }) {
@@ -34,7 +35,12 @@ export default function Cart({ auth, cartCount, products }) {
                                 }
                             </tbody>
                         </table>
-                        : <p className='text-2xl'>Nothing in your cart.</p>
+                        : <div>
+                            <p className='text-2xl'>Nothing in your cart.</p>
+                            <Link href={route('shop.index')}>
+                                <button className='text-white text-2xl font-bold py-3 px-5 bg-green-500 hover:bg-green-600 transition rounded-lg mt-5'>Shop Now</button>
+                            </Link>
+                        </div>
                     }
                 </section>
                 {
