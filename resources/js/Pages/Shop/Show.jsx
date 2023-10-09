@@ -18,17 +18,32 @@ export default function Show({ auth, cartCount, product }) {
     }
 
     return (
-        <MainLayout auth={auth} cartCount={cartCount} head={product.name}>
-            <div className='grid grid-cols-4 gap-8 p-12 auto-rows-auto'>
+        <MainLayout auth={auth} cartCount={cartCount} head={product.name} className='p-12'>
+            <section className='absolute space-y-2'>
+                <div className='space-x-1.5'>
+                    <Link href={route('shop.index')} className='hover:underline'>
+                        Shop
+                    </Link>
+                    <span>&#8250;</span>
+                    <Link href={route('shop.index', { category: product.category.slug })} className='hover:underline'>
+                        {product.category.name}
+                    </Link>
+                    <span>&#8250;</span>
+                    <Link href={route('shop.show', { product: product.slug })} className='hover:underline'>
+                        {product.name}
+                    </Link>
+                </div>
                 <button onClick={() => history.back()} className='max-h-10 flex content-center'>
                     <img className='w-10 mr-2' src="/images/pistol_icon.png" alt="Back"/>
                     <span className='text-2xl font-bold my-auto'>Back</span>
                 </button>
+            </section>
+            <section className='w-1/2 mx-auto flex flex-wrap gap-8'>
                 <img 
-                    className='border-4 border-black bg-gray-300 w-full' 
+                    className='border-4 border-black bg-gray-300 grow' 
                     src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'} 
                     alt='Gun' />
-                <div className='border-2 border-black rounded-xl p-8 flex flex-col justify-between bg-gray-400 text-black'>
+                <div className='border-2 border-black rounded-xl p-8 grow flex flex-col justify-between bg-gray-400 text-black'>
                     <div className='flex flex-col gap-1'>
                         <Link href={route('shop.index', { category: product.category.slug })}>
                             <button className='border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-md text-lg px-2 py-px'>{product.category.name}</button>
@@ -88,7 +103,7 @@ export default function Show({ auth, cartCount, product }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </MainLayout>
     );
 }
