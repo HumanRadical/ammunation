@@ -18,25 +18,25 @@ export default function Show({ auth, cartCount, product }) {
     }
 
     return (
-        <MainLayout auth={auth} cartCount={cartCount} head={product.name}>
-            <div className='space-x-1.5 absolute px-11 py-3.5'>
-                <Link href={route('shop.index')} className='hover:underline'>
-                    Shop
-                </Link>
-                <span>&#8250;</span>
-                <Link href={route('shop.index', { category: product.category.slug })} className='hover:underline'>
-                    {product.category.name}
-                </Link>
-                <span>&#8250;</span>
-                <Link href={route('shop.show', { product: product.slug })} className='hover:underline'>
-                    {product.name}
-                </Link>
-            </div>
-            <button onClick={() => history.back()} className='max-h-10 flex content-center absolute p-11'>
-                <img className='w-10 mr-2' src="/images/pistol_icon.png" alt="Back"/>
-                <span className='text-2xl font-bold my-auto'>Back</span> 
-            </button>
-            <section className='w-1/2 mx-auto flex flex-wrap gap-8 py-12'>
+        <MainLayout auth={auth} cartCount={cartCount} head={product.name} className='p-12'>
+            <section className='absolute space-y-2'>
+                <div className='space-x-1.5'>
+                    <Link href={route('shop.index')} className='hover:underline'>
+                        Shop
+                    </Link>
+                    <span>&#8250;</span>
+                    <Link href={route('shop.index', { category: product.category.slug })} className='hover:underline'>
+                        {product.category.name}
+                    </Link>
+                    <span>&#8250;</span>
+                    <span>{product.name}</span>
+                </div>
+                <button onClick={() => history.back()} className='max-h-10 flex content-center'>
+                    <img className='w-10 mr-2' src="/images/pistol_icon.png" alt="Back"/>
+                    <span className='text-2xl font-bold my-auto'>Back</span> 
+                </button>
+            </section>
+            <section className='w-1/2 mx-auto flex flex-wrap gap-8'>
                 <img 
                     className='border-4 border-black bg-gray-300 grow' 
                     src={product.image ? `/storage/${product.image}` : '/images/gun_icon.png'} 
