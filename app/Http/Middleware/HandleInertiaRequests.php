@@ -34,7 +34,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $cart = Cart::where('session_id', Session::getId())->with('products')->first();
-        $cartCount = $cart->products->reduce(function (int $carry, Product $product) {
+        $cartCount = $cart?->products->reduce(function (int $carry, Product $product) {
             return $carry + $product->pivot->quantity;
         }, 0);
 
