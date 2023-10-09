@@ -1,7 +1,9 @@
 import { useForm } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function FilterBar({ manufacturers, categories, query }) {
+    const [autoSearch, setAutoSearch] = useState(false)
+
     const { data, setData, get, processing } = useForm()
 
     useEffect(() => {
@@ -10,15 +12,17 @@ export default function FilterBar({ manufacturers, categories, query }) {
         query.minPrice && setData('minPrice', query.minPrice)
         query.maxPrice && setData('maxPrice', query.maxPrice)
         query.search && setData('search', query.search)
-    }, [])
 
+        setAutoSearch(true)
+    }, [])
+    
     const handleSubmit = (event) => {
         event && event.preventDefault()
         get('/shop', { preserveState: true })
     }
-
+    
     useEffect(() => {
-        handleSubmit()
+        autoSearch && handleSubmit()
     }, [data.category, data.manufacturer])
 
     let selectedManufacturer = ''
