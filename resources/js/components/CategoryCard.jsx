@@ -9,7 +9,7 @@ export default function CategoryCard({ category }) {
             <img className='border-2 border-black m-5 w-24 bg-gray-300' src='/images/gun_icon.png' alt='Gun'/>
             <div className='m-auto flex'>
                 <h3 className='text-3xl my-auto font-bold'>{category.name}</h3>
-                <img className='w-5 ml-2' src="/images/chevron_right.svg" alt="" />
+                <img className='w-9 ml-1' src="/images/chevron_right.svg" alt="" />
             </div>
         </Link>
     );
