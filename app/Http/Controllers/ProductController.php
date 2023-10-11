@@ -11,10 +11,13 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $perPage = 12;
+
         return Inertia::render('Shop/Index', [
             'products' => Product::filter(
                 request(['category', 'manufacturer', 'minPrice', 'maxPrice', 'search'])
-            )->latest()->get(),
+            )->latest()->paginate($perPage)->all(),
+            'pageCount' => ceil(count(Product::all()) / $perPage),
             'manufacturers' => Manufacturer::all(),
             'categories' => Category::all(),
         ]);

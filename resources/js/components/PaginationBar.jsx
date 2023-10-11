@@ -1,26 +1,24 @@
 import { Link } from '@inertiajs/react'
 
-export default function PaginationBar({ size = 10, bgColor = 'gray-300', selectedColor = 'gray-400', pageRoute = 'shop.index', perPage, itemCount, currentPage, className }) {
-    const pageCount = Math.ceil(itemCount / perPage)
-
-    let firstPage
+export default function PaginationBar({ pageCount, currentPage, className, size = 10, bgColor = 'gray-300', selectedColor = 'gray-400', pageRoute = 'shop.index',  }) {
+    let firstPageButton
     if (currentPage < 3) {
-        firstPage = 1
+        firstPageButton = 1
     } else if (currentPage >= pageCount - 2) {
-        firstPage = pageCount - 4
+        firstPageButton = pageCount - 4
     } else {
-        firstPage = currentPage - 2
+        firstPageButton = currentPage - 2
     }
 
-    let lastPage = firstPage + 4 < pageCount ? firstPage + 4 : pageCount
-    if (firstPage + 4 < pageCount) {
-        lastPage = firstPage + 4
+    let lastPageButton
+    if (firstPageButton + 4 < pageCount) {
+        lastPageButton = firstPageButton + 4
     } else {
-        lastPage = pageCount
+        lastPageButton = pageCount
     }
 
     let pageButtons = []
-    for (let i = firstPage; i <= lastPage; i++) {
+    for (let i = firstPageButton; i <= lastPageButton; i++) {
         pageButtons.push(
             <Link href={route(pageRoute, { page: i })} preserveScroll key={`pagelink${i}`}>
                 <button className={`w-${size} hover:bg-${selectedColor} transition h-full ${currentPage === i && `bg-${selectedColor}`}`} >

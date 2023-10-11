@@ -13,8 +13,11 @@ class AdminProductController extends Controller
 {
     public function index()
     {
+        $perPage = 20;
+
         return Inertia::render('Admin/Index', [
-            'products' => Product::latest()->get()
+            'products' => Product::paginate($perPage)->all(),
+            'pageCount' => ceil(count(Product::all()) / $perPage),
         ]);
     }
 

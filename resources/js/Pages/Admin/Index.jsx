@@ -3,9 +3,8 @@ import PaginationBar from '@/components/PaginationBar';
 import ProductTableRow from '@/components/ProductTableRow';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Index({ auth, products, query }) {
+export default function Index({ auth, query, products, pageCount }) {
     const currentPage = query.page ? Number(query.page) : 1
-    const perPage = 20
 
     return (
         <AuthenticatedLayout
@@ -24,7 +23,7 @@ export default function Index({ auth, products, query }) {
                         ? <table className="max-w-fit min-w-full table-auto">
                                 <tbody className="font-light">
                                     {
-                                        products.slice((currentPage - 1) * perPage, currentPage * perPage).map(product => {
+                                        products.map(product => {
                                             return <ProductTableRow product={product} key={`productrow${product.id}`} />
                                         })
                                     }
@@ -38,8 +37,7 @@ export default function Index({ auth, products, query }) {
                     bgColor='white'
                     selectedColor='gray-200'
                     pageRoute='admin.index' 
-                    perPage={perPage} 
-                    itemCount={products.length} 
+                    pageCount={pageCount}
                     currentPage={currentPage} 
                 />
             </div>
