@@ -17,7 +17,6 @@ class ProductController extends Controller
             )->latest()->get(),
             'manufacturers' => Manufacturer::all(),
             'categories' => Category::all(),
-            'query' => request()->query()
         ]);
     }
 
