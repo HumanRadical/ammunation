@@ -1,4 +1,6 @@
-export default function PaginationBar({ size = 10, pageUrl = '/shop', perPage, itemCount, currentPage, setCurrentPage }) {
+import { Link } from '@inertiajs/react'
+
+export default function PaginationBar({ size = 10, pageRoute = 'shop.index', perPage, itemCount, currentPage }) {
     const pageCount = Math.ceil(itemCount / perPage)
 
     let firstPage
@@ -17,28 +19,30 @@ export default function PaginationBar({ size = 10, pageUrl = '/shop', perPage, i
         lastPage = pageCount
     }
 
-    let buttons = []
+    let pageButtons = []
     for (let i = firstPage; i <= lastPage; i++) {
-        buttons.push(
-            <button 
-                className={`w-${size} hover:bg-gray-400 transition ${currentPage === i && 'bg-gray-400'}`} 
-                onClick={() => setCurrentPage(i)} 
-                key={`pagebutton${i}`}
-            >
-                {i}
-            </button>
+        pageButtons.push(
+            <Link href={route(pageRoute, { page: i })} preserveScroll key={`pagelink${i}`}>
+                <button className={`w-${size} hover:bg-gray-400 transition h-full ${currentPage === i && 'bg-gray-400'}`} >
+                    {i}
+                </button>
+            </Link>
         )
     }
 
     return (
         <div className={`max-w-fit mx-auto flex bg-gray-300 divide-x-2 divide-black text-black text-xl h-${size} rounded-lg`}>
-            <button className={`w-${size} hover:bg-gray-400 transition rounded-l-lg`} onClick={() => currentPage > 1 && setCurrentPage(prevPage => prevPage - 1)}>
-                <img className='w-6 mx-auto' src="/images/chevron_left.svg" alt="Last page" />
-            </button>
-            {buttons}
-            <button className={`w-${size} hover:bg-gray-400 transition rounded-r-lg`} onClick={() => currentPage < pageCount && setCurrentPage(prevPage => prevPage + 1)}>
-                <img className='w-6 mx-auto' src="/images/chevron_right.svg" alt="Next page" />
-            </button>
+            <Link href={currentPage > 1 && route(pageRoute, { page:  currentPage - 1 })} preserveScroll>
+                <button className={`w-${size} hover:bg-gray-400 transition h-full rounded-l-lg`}>
+                    <img className='w-6 mx-auto' src="/images/chevron_left.svg" alt="Last page" />
+                </button>
+            </Link>
+            {pageButtons}
+            <Link href={currentPage < pageCount && route(pageRoute, { page: currentPage + 1 })} preserveScroll>
+                <button className={`w-${size} hover:bg-gray-400 transition h-full rounded-r-lg`}>
+                    <img className='w-6 mx-auto' src="/images/chevron_right.svg" alt="Next page" />
+                </button>
+            </Link>
         </div>
     )
 }

@@ -2,11 +2,10 @@ import MainLayout from '@/Layouts/MainLayout';
 import FilterBar from '@/components/FilterBar';
 import PaginationBar from '@/components/PaginationBar';
 import ProductCard from '@/components/ProductCard';
-import { useState } from 'react';
 
 export default function Index({ auth, cartCount, products, manufacturers, categories, query }) {
-    const [currentPage, setCurrentPage] = useState(1)
-    const perPage = 12
+    const currentPage = query.page ? Number(query.page) : 1
+    const perPage = 2
 
     return (
         <MainLayout auth={auth} cartCount={cartCount} head='Shop'>
@@ -21,7 +20,7 @@ export default function Index({ auth, cartCount, products, manufacturers, catego
                             })
                         }
                     </div>
-                    <PaginationBar perPage={perPage} itemCount={products.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                    <PaginationBar perPage={perPage} itemCount={products.length} currentPage={currentPage} />
                 </main>
                 : <main className='w-2/3 bg-gray-400 border-2 border-black rounded-xl text-center mx-auto my-10 py-16'>
                     <p className='text-2xl'>Nothing to see here...</p>
