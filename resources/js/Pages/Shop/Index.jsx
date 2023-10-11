@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function Index({ auth, cartCount, products, manufacturers, categories, query }) {
     const [currentPage, setCurrentPage] = useState(1)
-    const perPage = 2
+    const perPage = 12
 
     return (
         <MainLayout auth={auth} cartCount={cartCount} head='Shop'>
