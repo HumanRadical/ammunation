@@ -11,7 +11,7 @@ export default function Index({ auth, cartCount, products, manufacturers, catego
         <MainLayout auth={auth} cartCount={cartCount} head='Shop'>
             <FilterBar manufacturers={manufacturers} categories={categories} query={query} />
             {
-                products
+                products.length
                 ? <main className='w-2/3 mx-auto py-10 space-y-10'>
                     <div className='grid grid-cols-4 gap-8'>
                         {
