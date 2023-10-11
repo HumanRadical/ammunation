@@ -37,7 +37,7 @@ export default function PaginationBar({ size = 10, pageUrl = '/shop', perPage, i
             </button>
             {buttons}
             <button className={`w-${size} hover:bg-gray-400 transition rounded-r-lg`} onClick={() => currentPage < pageCount && setCurrentPage(prevPage => prevPage + 1)}>
-                <img className='w-6 mx-auto' src="/images/chevron_right.svg" alt="Last page" />
+                <img className='w-6 mx-auto' src="/images/chevron_right.svg" alt="Next page" />
             </button>
         </div>
     )
