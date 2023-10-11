@@ -1,5 +1,5 @@
 import { Link, router } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function CartCard({ product }) {
     const [quantity, setQuantity] = useState(product.pivot.quantity)
