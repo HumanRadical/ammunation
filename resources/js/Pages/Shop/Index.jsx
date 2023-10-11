@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard';
 
 export default function Index({ auth, cartCount, products, manufacturers, categories, query }) {
     const currentPage = query.page ? Number(query.page) : 1
-    const perPage = 2
+    const perPage = 12
 
     return (
         <MainLayout auth={auth} cartCount={cartCount} head='Shop'>
