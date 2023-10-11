@@ -1,8 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import PaginationBar from '@/components/PaginationBar';
 import ProductTableRow from '@/components/ProductTableRow';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Index({ auth, products }) {
+export default function Index({ auth, products, query }) {
+    const currentPage = query.page ? Number(query.page) : 1
+    const perPage = 20
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -16,19 +20,28 @@ export default function Index({ auth, products }) {
                 </Link>
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-md">
                     {
-                        products
+                        products.length
                         ? <table className="max-w-fit min-w-full table-auto">
-                            <tbody className="font-light">
-                                {
-                                    products.map(product => {
-                                        return <ProductTableRow product={product} key={`productrow${product.id}`} />
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                                <tbody className="font-light">
+                                    {
+                                        products.slice((currentPage - 1) * perPage, currentPage * perPage).map(product => {
+                                            return <ProductTableRow product={product} key={`productrow${product.id}`} />
+                                        })
+                                    }
+                                </tbody>
+                            </table>
                         : <p className='text-lg p-6'>No products yet.</p>
                     }
                 </div>
+                <PaginationBar 
+                    className='mt-6 shadow-sm' 
+                    bgColor='white'
+                    selectedColor='gray-200'
+                    pageRoute='admin.index' 
+                    perPage={perPage} 
+                    itemCount={products.length} 
+                    currentPage={currentPage} 
+                />
             </div>
 
         </AuthenticatedLayout>

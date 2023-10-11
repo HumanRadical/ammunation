@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react'
 
-export default function PaginationBar({ size = 10, pageRoute = 'shop.index', perPage, itemCount, currentPage }) {
+export default function PaginationBar({ size = 10, bgColor = 'gray-300', selectedColor = 'gray-400', pageRoute = 'shop.index', perPage, itemCount, currentPage, className }) {
     const pageCount = Math.ceil(itemCount / perPage)
 
     let firstPage
@@ -23,7 +23,7 @@ export default function PaginationBar({ size = 10, pageRoute = 'shop.index', per
     for (let i = firstPage; i <= lastPage; i++) {
         pageButtons.push(
             <Link href={route(pageRoute, { page: i })} preserveScroll key={`pagelink${i}`}>
-                <button className={`w-${size} hover:bg-gray-400 transition h-full ${currentPage === i && 'bg-gray-400'}`} >
+                <button className={`w-${size} hover:bg-${selectedColor} transition h-full ${currentPage === i && `bg-${selectedColor}`}`} >
                     {i}
                 </button>
             </Link>
@@ -31,15 +31,15 @@ export default function PaginationBar({ size = 10, pageRoute = 'shop.index', per
     }
 
     return (
-        <div className={`max-w-fit mx-auto flex bg-gray-300 divide-x-2 divide-black text-black text-xl h-${size} rounded-lg`}>
+        <div className={`h-${size} bg-${bgColor} max-w-fit mx-auto flex divide-x-2 divide-black text-black text-xl rounded-lg ${className}`}>
             <Link href={currentPage > 1 && route(pageRoute, { page:  currentPage - 1 })} preserveScroll>
-                <button className={`w-${size} hover:bg-gray-400 transition h-full rounded-l-lg`}>
+                <button className={`w-${size} hover:bg-${selectedColor} transition h-full rounded-l-lg`}>
                     <img className='w-6 mx-auto' src="/images/chevron_left.svg" alt="Last page" />
                 </button>
             </Link>
             {pageButtons}
             <Link href={currentPage < pageCount && route(pageRoute, { page: currentPage + 1 })} preserveScroll>
-                <button className={`w-${size} hover:bg-gray-400 transition h-full rounded-r-lg`}>
+                <button className={`w-${size} hover:bg-${selectedColor} transition h-full rounded-r-lg`}>
                     <img className='w-6 mx-auto' src="/images/chevron_right.svg" alt="Next page" />
                 </button>
             </Link>
