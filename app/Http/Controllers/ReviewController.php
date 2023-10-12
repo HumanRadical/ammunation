@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Review;
+use App\Rules\HalfIncrement;
 
 class ReviewController extends Controller
 {
     public function store(Product $product)
     {
         request()->validate([
-            'stars' => ['required', 'numeric', 'min:0.5', 'max:5'],
+            'stars' => ['required', 'numeric', 'min:0.5', 'max:5', new HalfIncrement],
             'body' => 'required'
         ]);
 
