@@ -3,8 +3,7 @@ import ResponsiveStarBar from './ResponsiveStarBar';
 
 export default function ReviewForm({ auth, product }) {
     const { data, setData, post, reset, errors, processing } = useForm({
-        body: '',
-        stars: 0
+        body: ''
     })
 
     const handleSubmit = (event) => {
@@ -27,7 +26,7 @@ export default function ReviewForm({ auth, product }) {
                     <h3 className='text-2xl font-bold'>Add a review:</h3>
                     <div className='flex flex-wrap'>
                         <img className='rounded-full w-10 h-10 my-auto' src='/images/user_icon.png' alt='User Icon' />
-                        <ResponsiveStarBar className='h-7 my-auto ml-2' stars={data.stars} setData={setData} />
+                        <ResponsiveStarBar className='h-7 my-auto ml-2' stars={data.stars ? data.stars : 0} setData={setData} />
                         {errors.stars && <p className='text-red-500 w-full mt-1'>{errors.stars}</p>}
                     </div>
                     {
