@@ -31,16 +31,18 @@ export default function ReviewForm({ auth, product }) {
                             <ResponsiveStarBar className='h-7 my-auto ml-2' stars={data.stars} setData={setData} />
                             {errors.stars && <p className='text-red-500 w-full mt-1'>{errors.stars}</p>}
                         </div>
-                        <div>
-                            <textarea 
-                                className='w-full rounded-lg border-gray-500' 
-                                value={data.body}
-                                onChange={e => setData('body', e.target.value)} 
-                                placeholder='Describe your experience...'
-                                rows='4' 
-                                required />
-                            {errors.body && <p className='text-red-500 w-full mt-1'>{errors.body}</p>}
-                        </div>
+                        {
+                            product.reviews.find(review => review.user_id === auth.user.id)
+                            && <p className='text-white'>You've already left a review, update your old one?</p>
+                        }
+                        <textarea 
+                            className='w-full rounded-lg border-gray-500' 
+                            value={data.body}
+                            onChange={e => setData('body', e.target.value)} 
+                            placeholder='Describe your experience...'
+                            rows='4' 
+                            required />
+                        {errors.body && <p className='text-red-500 w-full mt-1'>{errors.body}</p>}
                         <button 
                             className='bg-blue-500 hover:bg-blue-600 text-white text-xl font-bold rounded-lg px-4 py-2 mt-3'
                             disabled={processing}
