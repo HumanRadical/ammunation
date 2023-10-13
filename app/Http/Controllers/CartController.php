@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Session;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -54,10 +54,23 @@ class CartController extends Controller
 
     private function validateCart() 
     {
-        $session_id = Session::getId();
-        $cart = Cart::where('session_id', $session_id)->first();
+        $session = Session::where('id', request()->session()->getId())->first(); 
+        $cart = Cart::where('session_id', $session->id)->first();
+
+        if (auth()->user()) {
+            $previousSession = Session::whereNot('id', $session->id)
+                ->where('user_id', auth()->user()->id)->first();
+            if ($previousSession) {
+                $previousCart = Cart::where('session_id', $previousSession->id)->first();
+                if ($previousCart) {
+                    $previousCart->update(['session_id' => $session->id]);
+                    $cart = $previousCart;
+                }
+            }
+        }
+        
         if (!$cart) {
-            $cart = Cart::create(['session_id' => $session_id]);
+            $cart = Cart::create(['session_id' => $session->id]);
         }
 
         return $cart;
