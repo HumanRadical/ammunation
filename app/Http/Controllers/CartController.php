@@ -60,12 +60,11 @@ class CartController extends Controller
         if (auth()->user()) {
             $previousSession = Session::whereNot('id', $session->id)
                 ->where('user_id', auth()->user()->id)->first();
-            if ($previousSession) {
-                $previousCart = Cart::where('session_id', $previousSession->id)->first();
-                if ($previousCart) {
-                    $previousCart->update(['session_id' => $session->id]);
-                    $cart = $previousCart;
-                }
+            $previousCart = Cart::where('session_id', $previousSession?->id)->first();
+            
+            if ($previousCart) {
+                $previousCart->update(['session_id' => $session->id]);
+                $cart = $previousCart;
             }
         }
         
