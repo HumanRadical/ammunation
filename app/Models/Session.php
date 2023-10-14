@@ -10,4 +10,9 @@ class Session extends Model
     use HasFactory;
 
     public $incrementing = false;
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }

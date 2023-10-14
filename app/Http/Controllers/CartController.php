@@ -54,14 +54,14 @@ class CartController extends Controller
 
     private function validateCart() 
     {
-        $session = Session::where('id', request()->session()->getId())->first(); 
+        $session = Session::find(request()->session()->getId())->first(); 
         $cart = Cart::where('session_id', $session->id)->first();
 
         if (auth()->user()) {
             $previousSession = Session::whereNot('id', $session->id)
                 ->where('user_id', auth()->user()->id)->first();
-            $previousCart = Cart::where('session_id', $previousSession?->id)->first();
-            
+            $previousCart = $previousSession?->cart;
+
             if ($previousCart) {
                 $previousCart->update(['session_id' => $session->id]);
                 $cart = $previousCart;
